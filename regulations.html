@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="資安考試 法規與 ISO 規範總整理；完整保留 Obsidian 學習筆記與待確認紀錄。">
+<title>資安考試 法規與 ISO 規範總整理</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body class="regulations">
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">A.</span> Anthea<span class="brand-note">備考手帳 / 2026</span></a>
+<nav aria-label="主要導覽"><a href="index.html" >讀書計畫</a><a href="regulations.html" aria-current="page">法規與 ISO</a></nav>
+</div></header>
+<main id="main">
+<section class="hero"><p class="eyebrow">2026 STUDY NOTES <span aria-hidden="true">/</span> 02 — REFERENCE</p>
+<h1>資安考試 法規與 ISO 規範總整理</h1><p class="hero-intro">法規層級、關鍵數字與 ISO 判題線索，以及兩份內部稽核員課堂筆記。</p><p class="notice"><strong>學習筆記・尚未驗證</strong><br>本次依指定素材整理，未作外部法規查證。來源中的待確認事項完整保留。</p></section>
+<div class="reading-layout"><aside class="page-toc"><nav aria-label="頁內目錄"><p class="toc-label">本頁目錄</p><a href="#quick-numbers">關鍵數字速查</a><a href="#iso-lookup">ISO 判題口訣對照表</a><a href="#law-s1" class="toc-level-2">資安法規體系總整理</a>
+<a href="#law-s2" class="toc-level-3">🎯 判斷口訣</a>
+<a href="#law-s3" class="toc-level-3">🧠 核心比喻</a>
+<a href="#law-s4" class="toc-level-3">📚 正式定義</a>
+<a href="#law-s7" class="toc-level-3">🖼️ 資訊圖卡（康乃爾筆記）</a>
+<a href="#law-s8" class="toc-level-3">💬 我的推理鏈</a>
+<a href="#law-s9" class="toc-level-3">⚠️ 卡點紀錄</a>
+<a href="#law-s10" class="toc-level-3">🔗 概念關聯</a>
+<a href="#law-s11" class="toc-level-3">✅ 掌握程度</a>
+<a href="#law-s12" class="toc-level-3">📎 來源</a><a href="#audit">課堂演練 · ISO 27001</a><a href="#pims">隱私管理 · ISO 27701</a></nav></aside>
+<div class="reading-content"><section id="quick-numbers" class="quick-reference"><h2>關鍵數字速查</h2>
+<p class="notice"><strong>尚未驗證</strong> · 以下逐項摘錄來源；時限數字與法源仍待驗證。</p>
+<dl class="number-grid">
+<div><dt>通報</dt><dd>知悉後 1 小時內</dd></div>
+<div><dt>等級審核</dt><dd>1、2 級 8 小時／3、4 級 2 小時</dd></div>
+<div><dt>損害控制復原</dt><dd>1、2 級 72 小時／3、4 級 36 小時</dd></div>
+<div><dt>調查改善報告</dt><dd>1 個月內</dd></div>
+<div><dt>演練</dt><dd>社交工程每半年、通報應變每年</dd></div>
+<div><dt>稽核</dt><dd>1 個月前書面通知、小組 3 人以上、改善報告 1 個月內</dd></div>
+<div><dt>罰鍰</dt><dd>未通報 30 萬～1,000 萬；違反維護計畫 10 萬～500 萬；拒絕調查 10 萬～100 萬</dd></div>
+<div><dt>責任等級／委外／日誌</dt><dd>責任等級每 3 年提報；委外核心系統或 ≥1,000 萬須第三方檢測；日誌保留至少 6 個月</dd></div>
+<div><dt>國家機密</dt><dd>絕對機密 30 年／極機密 20 年／機密 10 年；30 日內核定；112 年修法取消永久保密</dd></div>
+<div><dt>刑法 §358/359/360</dt><dd>3 年 30 萬／5 年 60 萬／3 年 30 萬</dd></div>
+<div><dt>GDPR</dt><dd>72 小時通報；2,000 萬歐元或全球營業額 4%</dd></div>
+</dl></section>
+<section id="iso-lookup"><h2>ISO 判題口訣對照表</h2>
+<p class="notice"><strong>尚未驗證／待確認</strong> · ISO 是「標準」不是法規。版本年份與驗證適用範圍請連同<a href="#law-s9">卡點紀錄</a>閱讀。</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="ISO 判題口訣對照表"><table class="data-table iso-table"><thead><tr><th scope="col">ISO</th><th scope="col">來源判題口訣</th></tr></thead><tbody>
+<tr><th scope="row">27001</th><td>管理制度要求→27001；控制措施怎麼做→27002</td></tr>
+<tr><th scope="row">27002</th><td>管理制度要求→27001；控制措施怎麼做→27002</td></tr>
+<tr><th scope="row">27017</th><td>雲端一般控制、供應商＋客戶→27017；公有雲＋個資＋處理者→27018</td></tr>
+<tr><th scope="row">27018</th><td>雲端一般控制、供應商＋客戶→27017；公有雲＋個資＋處理者→27018</td></tr>
+<tr><th scope="row">27005</th><td>27005 只管資安風險；31000 管組織整體風險、不可驗證發證</td></tr>
+<tr><th scope="row">31000</th><td>27005 只管資安風險；31000 管組織整體風險、不可驗證發證</td></tr>
+<tr><th scope="row">27701</th><td>27701:2025 可獨立驗證（2019 舊版須先有 27001）</td></tr>
+<tr><th scope="row">42001</th><td>42001 AI 管理系統</td></tr>
+<tr><th scope="row">22301</th><td>22301 營運持續</td></tr>
+<tr><th scope="row">20000</th><td>20000 IT 服務管理</td></tr>
+<tr><th scope="row">17025</th><td>17025 實驗室認證（數位鑑識）</td></tr>
+</tbody></table></div>
+<p class="notice">原稿並列「27701:2025 可獨立驗證」與「27001 是唯一可第三方驗證取證的 27000 系列標準」，本次保留來源說法，適用範圍待確認。</p></section>
+<article id="law"><details class="metadata"><summary>筆記資料與原始來源</summary><pre>---
+date: 2026-09-10
+updated: 2026-09-12
+session_origin: Claude Chat 手機 2026-09-10（分享對話）＋Claude Code 補寫 2026-09-11
+type: 學習筆記
+tags: [費曼學習, iPAS-資訊安全, 資安法規, 資通安全管理法, 個資法, ISO-27001]
+description: 整理資安法規層級、8 部子法生命週期、時限數字與 ISO 判題線索；<mark class="warning-mark">尚未驗證</mark>。
+aliases: [資安法規總整理, 資安法八子法, 資安法規體系總整理]
+subject: I11 資訊安全管理概論
+chapter: I11102
+chapter_title: 1-2 相關法規概論與遵循
+---</pre><p><a href="source/I11102 資安法規體系總整理.md">開啟完整 Markdown 原稿</a></p></details>
+<h2 id="law-s1">資安法規體系總整理</h2>
+<blockquote>
+<p><strong>一句話抓住核心</strong></p>
+<p>先分法規層級，再依事前、事中、事後對應子法；ISO 是標準。</p>
+</blockquote>
+<hr>
+<h3 id="law-s2">🎯 判斷口訣</h3>
+<blockquote>
+<ul>
+<li>法律（資安法）→ 命令（8 部子法）→ 行政規則 → 行政指導文件</li>
+<li>事前：分級、維護計畫、危害產品審查；事中：通報應變演練、情資分享；事後：稽核、獎懲。</li>
+<li>知悉後 1 小時內通報；1、2 級審核 8 小時／復原 72 小時；3、4 級審核 2 小時／復原 36 小時。</li>
+<li>管理制度要求 → 27001；控制措施怎麼做 → 27002。</li>
+<li>雲端一般控制、供應商＋客戶 → 27017；公有雲＋個資＋處理者 → 27018。</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="law-s3">🧠 核心比喻</h3>
+<p>沿用來源的「資安管理生命週期」：對象確認 → 事前 → 事中 → 事後，將各部子法放回它處理的階段。來源未記錄個人口述比喻。</p>
+<h3 id="law-s4">📚 正式定義</h3>
+<ol>
+<li>資安法令規範層級：法律（資安法）→ 命令（8 部子法）→ 行政規則 → 行政指導文件</li>
+<li>資安法 8 部子法（依官方教材；HackMD 筆記寫 7 部是漏了會報設置辦法）：
+<ul>
+<li>組織架構：國家資通安全會報設置辦法（115/3/2）</li>
+<li>基礎管理：施行細則（115/1/5）、責任等級分級辦法（115/1/7）</li>
+<li>維護與稽核：維護計畫實施情形稽核辦法（115/1/5）</li>
+<li>通報與分享：事件通報應變及演練辦法（115/1/5）、情資分享辦法（115/1/5）</li>
+<li>人員與產品：公務機關所屬人員辦理資通安全事項作業辦法（115/1/13）、危害國家資通安全產品審查辦法（114/12/1 施行）</li>
+</ul></li>
+<li>資安管理生命週期＝哪部子法管哪個階段：對象確認（母法§3）→ 事前（分級辦法→施行細則維護計畫→危害產品審查）→ 事中（通報應變演練＋情資分享）→ 事後（稽核辦法＋作業辦法獎懲）</li>
+<li>資安法 vs 個資法：主管機關 數發部 vs 個人資料保護委員會；對象 公務＋特定非公務機關 vs 所有公務＋非公務機關；資安法§33 個資外洩另依個資法處理</li>
+<li>母法：107/6/6 公布、108/1/1 施行；114/9/24 修正、114/12/1 施行；5 章 35 條；主管機關數位發展部；不含軍事、情報機關</li>
+</ol>
+<h4 id="law-s5">關鍵數字</h4>
+<ul>
+<li>通報：知悉後 1 小時內</li>
+<li>等級審核：1、2 級 8 小時／3、4 級 2 小時</li>
+<li>損害控制復原：1、2 級 72 小時／3、4 級 36 小時</li>
+<li>調查改善報告：1 個月內</li>
+<li>演練：社交工程每半年、通報應變每年</li>
+<li>稽核：1 個月前書面通知、小組 3 人以上、改善報告 1 個月內</li>
+<li>罰鍰：未通報 30 萬～1,000 萬；違反維護計畫 10 萬～500 萬；拒絕調查 10 萬～100 萬</li>
+<li>責任等級每 3 年提報；委外核心系統或 ≥1,000 萬須第三方檢測；日誌保留至少 6 個月</li>
+<li>國家機密：絕對機密 30 年／極機密 20 年／機密 10 年；30 日內核定；112 年修法取消永久保密</li>
+<li>刑法 §358/359/360：3 年 30 萬／5 年 60 萬／3 年 30 萬</li>
+<li>GDPR：72 小時通報；2,000 萬歐元或全球營業額 4%</li>
+</ul>
+<h4 id="law-s6">ISO 判題口訣（ISO 是「標準」不是法規）</h4>
+<ul>
+<li>管理制度要求→27001；控制措施怎麼做→27002</li>
+<li>雲端一般控制、供應商＋客戶→27017；公有雲＋個資＋處理者→27018</li>
+<li>27005 只管資安風險；31000 管組織整體風險、不可驗證發證</li>
+<li>27701:2025 可獨立驗證（2019 舊版須先有 27001）</li>
+<li>27001 是唯一可第三方驗證取證的 27000 系列標準；CNS 27001/27002:2023/27005:2024 為繁中對應版</li>
+<li>其他：42001 AI 管理系統、22301 營運持續、20000 IT 服務管理、17025 實驗室認證（數位鑑識）</li>
+</ul>
+<h3 id="law-s7">🖼️ 資訊圖卡（康乃爾筆記）</h3>
+<figure><a href="assets/資安法規體系總整理_2026-09-10.png" class="image-link" aria-label="放大：資安法規體系總整理_2026-09-10"><img src="assets/資安法規體系總整理_2026-09-10-web.jpg" width="1600" height="2400" loading="lazy" decoding="async" alt="資安法規體系總整理_2026-09-10"></a><figcaption>點擊圖卡，開啟原尺寸圖片</figcaption></figure>
+<hr>
+<h3 id="law-s8">💬 我的推理鏈</h3>
+<blockquote>
+<p>本次為整理，未經費曼追問</p>
+</blockquote>
+<h3 id="law-s9">⚠️ 卡點紀錄</h3>
+<p>本次為整理，未經費曼追問</p>
+<ul>
+<li>8 部子法的法源條文、時限數字<mark class="warning-mark">尚未經三層追問驗證</mark>。</li>
+<li>ISO/IEC 27017 版本年份：標準比較表寫 2026、教材第 3 天寫 2015，<mark class="warning-mark">尚未查證</mark>。</li>
+<li>原稿並列「27701:2025 可獨立驗證」與「27001 是唯一可第三方驗證取證的 27000 系列標準」，本次保留來源說法，適用範圍<mark class="warning-mark">待確認</mark>。</li>
+<li>新版教材第 113 頁「表 19 ISO/IEC 27000 常見系列標準」未讀入。</li>
+<li>學習指引第 4 章第 2、3 節（PAPA、稽核三方、OECD 原則）尚未練。</li>
+<li>下一步：驗證「資安法 8 子法生命週期」與「通報時限數字」，再進個資法蒐集、處理、利用三階段。</li>
+</ul>
+<h3 id="law-s10">🔗 概念關聯</h3>
+<ul>
+<li><a href="#pims">ISO 27701 PIMS 內部稽核員</a></li>
+</ul>
+<hr>
+<h3 id="law-s11">✅ 掌握程度</h3>
+<ul>
+<li>☐ 尚未過（比喻連續卡住）</li>
+<li>☐ 部分（第一輪過，驗收未完成）</li>
+<li>☐ 通過（三層追問 + 驗收復盤完成）</li>
+</ul>
+<p>實際狀態：整理層級，<mark class="warning-mark">尚未驗證</mark></p>
+<h3 id="law-s12">📎 來源</h3>
+<ul>
+<li>唯一文字素材：source-2026-09-10-法規整理.md（本機暫存檔，未隨網頁公開）</li>
+<li>原始學習日期：2026-09-10；本次依指定素材整理，<mark class="warning-mark">未作外部法規查證</mark>。</li>
+</ul></article>
+<details id="audit" class="chapter"><summary><span class="chapter-kicker">課堂筆記 01</span>ISO 27001 內部稽核員 課堂演練</summary><div class="chapter-body"><details class="metadata"><summary>筆記資料與原始來源</summary><pre>---
+date: 2026-08-07
+updated: 2026-09-12
+session_origin: Claude Chat（課堂）→ Claude Code
+type: 學習筆記
+tags: [費曼學習, iPAS-資訊安全, ISO-27001, 內部稽核, 查檢表, 條款9, 附錄A控制項]
+description: ARES 亞瑞仕 ISO/IEC 27001:2022 內部稽核員課堂演練完整紀錄 — 查檢表開發、情境開單、模擬試題
+aliases: [ISO 27001 內部稽核員, ISO 27001:2022, 內部稽核查檢表, ISO 27001 內部稽核員 課堂演練]
+subject: I11 資訊安全管理概論
+chapter: I11102
+chapter_title: 1-2 相關法規概論與遵循
+---</pre><p><a href="source/I11102 ISO 27001 內部稽核員 課堂演練.md">開啟完整 Markdown 原稿</a></p></details>
+<h2 id="audit-s1">ISO 27001 內部稽核員 課堂演練</h2>
+<blockquote>
+<p><strong>一句話抓住核心</strong></p>
+<p>內部稽核不是照表操課——查檢表要依受稽組織的業務特性客製化，開單前要先確認證據是否齊全，不能急著下判斷。</p>
+</blockquote>
+<hr>
+<h3 id="audit-s2">🎯 判斷口訣</h3>
+<blockquote>
+<ul>
+<li><strong>查檢表客製化</strong>：金融公司側重交易安全法規；交友軟體側重敏感個資、未成年防護</li>
+<li><strong>開單三步</strong>：找依據條款 → 判斷主要/次要不符合 → 確認有沒有遺漏的佐證要再查</li>
+<li><strong>A.7.5 vs A.6.3</strong>：實體環境防護開單，人員意識訓練是次要引用，不要主客顛倒</li>
+<li>稽核重點應涵蓋利害關係人議題，不能只看表面符合性檢查</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="audit-s3">🧠 核心比喻</h3>
+<p><strong>內部稽核員 = 房屋檢查員</strong>：不是拿著同一張檢查表走遍所有房子，而是先了解這間房子的用途（銀行金庫 vs 交友軟體機房），再決定要重點檢查哪裡。</p>
+<p><strong>開單 = 醫生下診斷</strong>：症狀（現場觀察）→ 對照病歷（條款依據）→ 診斷（主要/次要不符合）→ 但診斷前要確認有沒有漏掉的檢查項目（暫不開單、<mark class="warning-mark">待確認</mark>事項）。</p>
+<h3 id="audit-s4">📚 正式定義</h3>
+<h4 id="audit-s5">活動 3：查檢表客製化（依業務特性）</h4>
+<div class="table-scroll" role="region" tabindex="0" aria-label="活動 3：查檢表客製化（依業務特性）">
+<table class="data-table">
+<thead><tr>
+<th scope="col">條款/控制項</th>
+<th scope="col">內容</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="條款/控制項">A.5.1</td>
+<td data-label="內容">資訊安全政策</td>
+</tr>
+<tr>
+<td data-label="條款/控制項">A.5.3</td>
+<td data-label="內容">組織角色、職責與權限</td>
+</tr>
+<tr>
+<td data-label="條款/控制項">本文 6.2</td>
+<td data-label="內容">資訊安全目標與實現目標的計劃</td>
+</tr>
+<tr>
+<td data-label="條款/控制項">本文 7.4</td>
+<td data-label="內容">溝通</td>
+</tr>
+<tr>
+<td data-label="條款/控制項">本文 7.5.3</td>
+<td data-label="內容">文件化資訊的控制</td>
+</tr>
+<tr>
+<td data-label="條款/控制項">本文 9.1</td>
+<td data-label="內容">監控、量測、分析和評價</td>
+</tr>
+</tbody></table>
+</div>
+<p><strong>情境一（網路銀行軟體開發公司）</strong>：側重金融交易安全與法規遵循</p>
+<p><strong>情境二（交友軟體開發公司）</strong>：側重個人敏感資料保護、DPO、未成年防護、帳號刪除後資料處置</p>
+<blockquote>
+<p>同樣六個條款，兩種業務要問的問題完全不同——這就是查檢表客製化的意義。</p>
+</blockquote>
+<h4 id="audit-s6">情境題：機房 CO₂ 滅火系統開單演練</h4>
+<p>情境：CO₂ 滅火，感測器觸發後 2 分鐘自動噴灑，現場無逃生指示、無氧氣面罩、無消防演練紀錄。</p>
+<ul>
+<li><strong>開單依據</strong>：A.7.5 防護實體與環境威脅</li>
+<li><strong>次要引用</strong>：A.6.3 資訊安全意識、教育及訓練</li>
+<li><strong>暫不開單需再確認</strong>：演練紀錄是否由其他單位保管、逃生指示位置、風險評鑑文件、緊急應變程序書、系統維護測試紀錄、替代防護措施</li>
+</ul>
+<blockquote>
+<p>稽核不是看到問題就開單，要先確認證據是否真的齊全——這題練的是「暫不開單」的判斷力，跟 <a href="#pims">ISO 27701 PIMS 內部稽核員</a> 裡的矯正/矯正措施概念相通。</p>
+</blockquote>
+<h4 id="audit-s7">模擬試題重點（10 題全對）</h4>
+<ul>
+<li>單選：本文4(B)、本文6(B)、A.5.15(B)、A.8.33反選(D)、A.8.20反選(C)、風險評估頻率(D)</li>
+<li>複選：管理程序書(ACD)、條款9佐證(ABC)、條款10改進(ABCF)、實體控制(ABCE)</li>
+</ul>
+<h3 id="audit-s8">🖼️ 資訊圖卡（康乃爾筆記）</h3>
+<figure><a href="assets/ISO 27001 內部稽核員 課堂演練_2026-08-07.png" class="image-link" aria-label="放大：ISO 27001 內部稽核員 課堂演練_2026-08-07"><img src="assets/ISO 27001 內部稽核員 課堂演練_2026-08-07-web.jpg" width="1600" height="2400" loading="lazy" decoding="async" alt="ISO 27001 內部稽核員 課堂演練_2026-08-07"></a><figcaption>點擊圖卡，開啟原尺寸圖片</figcaption></figure>
+<hr>
+<h3 id="audit-s9">💬 我的推理鏈</h3>
+<blockquote>
+<p>這次課堂演練最大的收穫是「查檢表客製化」——原本以為稽核查檢表是固定模板，套用到任何公司都一樣，但銀行 vs 交友軟體同樣六個條款要問的問題完全不同。CO₂ 滅火系統那題練的是「不要急著開單」，要先分清楚主要依據和次要引用，還有哪些證據沒確認清楚就先列出來，不能靠猜。</p>
+</blockquote>
+<h3 id="audit-s10">⚠️ 卡點紀錄</h3>
+<ul>
+<li>尚無明顯卡點，模擬試題 10 題全對</li>
+<li>下次可以練習「暫不開單」情境的判斷邏輯是否能類推到其他控制項（不只 A.7.5）</li>
+</ul>
+<h3 id="audit-s11">🔗 概念關聯</h3>
+<ul>
+<li><a href="#pims">ISO 27701 PIMS 內部稽核員</a>（同期課程，矯正 vs 矯正措施的稽核邏輯互通）</li>
+<li><span class="unlinked" title="I11101 ISMS 資訊安全管理系統">ISMS 資訊安全管理系統</span>（27001 是 ISMS 的母標準）</li>
+<li><span class="unlinked" title="I11101 CIA 三要素">CIA 三要素</span>（A.7.5 實體防護對應可用性 A）</li>
+</ul>
+<hr>
+<h3 id="audit-s12">✅ 掌握程度</h3>
+<ul>
+<li>☐ 尚未過（比喻連續卡住）</li>
+<li>☐ 部分（第一輪過，驗收未完成）</li>
+<li>☑ 通過（查檢表客製化＋開單判斷＋模擬試題全對）</li>
+</ul></div></details>
+<details id="pims" class="chapter"><summary><span class="chapter-kicker">課堂筆記 02</span>ISO 27701 PIMS 內部稽核員</summary><div class="chapter-body"><details class="metadata"><summary>筆記資料與原始來源</summary><pre>---
+date: 2026-08-07
+updated: 2026-09-12
+session_origin: Claude Chat → Claude Code
+type: 學習筆記
+tags: [費曼學習, iPAS-資訊安全, ISO-27701, PIMS, PII, 內部稽核, 個資法, 隱私管理]
+description: ARES 亞瑞仕 ISO/IEC 27701:2025 PIMS 內部稽核員課程完整學習紀錄
+aliases: [ISO 27701, PIMS 內部稽核員, 隱私資訊管理系統, ISO 27701 PIMS 內部稽核員]
+subject: I11 資訊安全管理概論
+chapter: I11103
+chapter_title: 1-3 隱私權保護與智慧財產權
+---</pre><p><a href="source/I11103 ISO 27701 PIMS 內部稽核員.md">開啟完整 Markdown 原稿</a></p></details>
+<h2 id="pims-s1">ISO 27701 PIMS 內部稽核員</h2>
+<blockquote>
+<p><strong>一句話抓住核心</strong></p>
+<p>ISO 27701 是「隱私版的 27001」——在資安管理制度上，再加一層個資保護專用的控制項與角色（控制者 vs 處理者）。</p>
+</blockquote>
+<hr>
+<h3 id="pims-s2">🎯 判斷口訣</h3>
+<blockquote>
+<ul>
+<li><strong>控制者 vs 處理者</strong>：誰決定「為什麼蒐集」→ 控制者；誰受委託「照指示處理」→ 處理者</li>
+<li><strong>內部部門 ≠ 處理者</strong>（不是獨立法律實體）</li>
+<li><strong>同一組織不同情境可有不同角色</strong>（例：HR 蒐集員工個資 = 控制者，代理商處理客戶名單 = 處理者）</li>
+<li><strong>風險 = 衝擊 × 機率</strong>，各 1-4 分，≥12 分 = 不可接受</li>
+<li><strong>矯正 ≠ 矯正措施</strong>：矯正修復眼前問題，矯正措施根除原因防再發</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="pims-s3">🧠 核心比喻</h3>
+<p><strong>控制者 = 餐廳老闆</strong>：決定菜單、採購食材、決定怎麼料理。</p>
+<p><strong>處理者 = 外包廚師</strong>：依老闆指示做菜，不能自己決定菜單。</p>
+<p><strong>內部部門 = 廚房裡的員工</strong>：聽老闆指揮，不算「外包」。</p>
+<p><strong>矯正 = 撲火</strong>：滅掉眼前的火。</p>
+<p><strong>矯正措施 = 裝偵煙器</strong>：讓火不會再發生。</p>
+<h3 id="pims-s4">📚 正式定義</h3>
+<h4 id="pims-s5">ISO 27701:2025 vs 2019 重大變化</h4>
+<div class="table-scroll" role="region" tabindex="0" aria-label="ISO 27701:2025 vs 2019 重大變化">
+<table class="data-table">
+<thead><tr>
+<th scope="col">項目</th>
+<th scope="col">2019 版</th>
+<th scope="col">2025 版</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="項目">獨立驗證</td>
+<td data-label="2019 版">必須先有 ISO 27001</td>
+<td data-label="2025 版">可獨立驗證</td>
+</tr>
+<tr>
+<td data-label="項目">附錄結構</td>
+<td data-label="2019 版">分散</td>
+<td data-label="2025 版">Annex A 整併三表</td>
+</tr>
+<tr>
+<td data-label="項目">控制項</td>
+<td data-label="2019 版">A.7 控制者 / A.8 處理者</td>
+<td data-label="2025 版">A.1 控制者 31 項 / A.2 處理者 18 項 / A.3 共用 29 項</td>
+</tr>
+</tbody></table>
+</div>
+<h4 id="pims-s6">PII 角色辨識</h4>
+<div class="table-scroll" role="region" tabindex="0" aria-label="PII 角色辨識">
+<table class="data-table">
+<thead><tr>
+<th scope="col">角色</th>
+<th scope="col">定義</th>
+<th scope="col">範例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="角色"><strong>控制者</strong></td>
+<td data-label="定義">決定蒐集目的與處理方式</td>
+<td data-label="範例">電商、醫院、銀行</td>
+</tr>
+<tr>
+<td data-label="角色"><strong>處理者</strong></td>
+<td data-label="定義">受委託依控制者指示處理</td>
+<td data-label="範例">雲端供應商、電子報系統、行銷代理商</td>
+</tr>
+<tr>
+<td data-label="角色"><strong>非處理者</strong></td>
+<td data-label="定義">內部部門（非獨立法律實體）</td>
+<td data-label="範例">公司 HR、IT 部門</td>
+</tr>
+</tbody></table>
+</div>
+<h4 id="pims-s7">控制者核心義務</h4>
+<ol>
+<li><strong>告知義務</strong>（A.1.3）：蒐集前告知目的、範圍、權利</li>
+<li><strong>同意取得</strong>（A.1.2）：明確、自由、特定、知情</li>
+<li><strong>最小化</strong>（A.1.4）：只蒐集必要的</li>
+<li><strong>保留期限與銷毀</strong>：時間到就刪</li>
+<li><strong>跨境傳輸評估</strong>：資料出國要評估</li>
+<li><strong>當事人權利回應</strong>：查閱、更正、刪除</li>
+<li><strong>委外處理者合約</strong>（A.1.2.7）：白紙黑字寫清楚</li>
+</ol>
+<h4 id="pims-s8">風險評鑑</h4>
+<ul>
+<li><strong>風險等級 = 衝擊 × 機率</strong>（各 1-4 分）</li>
+<li><strong>不可接受風險</strong>：≥12 分</li>
+<li><strong>處理策略</strong>：避免、降低、轉移、接受</li>
+</ul>
+<h4 id="pims-s9">稽核知識</h4>
+<div class="table-scroll" role="region" tabindex="0" aria-label="稽核知識">
+<table class="data-table">
+<thead><tr>
+<th scope="col">概念</th>
+<th scope="col">定義</th>
+<th scope="col">範例</th>
+</tr></thead>
+<tbody>
+<tr>
+<td data-label="概念"><strong>矯正</strong></td>
+<td data-label="定義">修復眼前問題</td>
+<td data-label="範例">補上遺失的簽核紀錄</td>
+</tr>
+<tr>
+<td data-label="概念"><strong>矯正措施</strong></td>
+<td data-label="定義">根因分析＋防再發</td>
+<td data-label="範例">建立自動提醒機制</td>
+</tr>
+<tr>
+<td data-label="概念"><strong>主要不符合</strong></td>
+<td data-label="定義">系統性失敗</td>
+<td data-label="範例">整個部門都沒做風險評鑑</td>
+</tr>
+<tr>
+<td data-label="概念"><strong>次要不符合</strong></td>
+<td data-label="定義">偶發缺失</td>
+<td data-label="範例">某次會議紀錄漏簽</td>
+</tr>
+</tbody></table>
+</div>
+<h4 id="pims-s10">台灣個資法重點</h4>
+<ul>
+<li><strong>特種個資</strong>（§6）：病歷、健康檢查、犯罪前科 → 門檻更高</li>
+<li><strong>求償</strong>：每人每事件 NT$500~20,000，同一事件上限 NT$2 億</li>
+</ul>
+<h3 id="pims-s11">🖼️ 資訊圖卡（康乃爾筆記）</h3>
+<figure><a href="assets/ISO 27701 PIMS 內部稽核員_2026-08-07.png" class="image-link" aria-label="放大：ISO 27701 PIMS 內部稽核員_2026-08-07"><img src="assets/ISO 27701 PIMS 內部稽核員_2026-08-07-web.jpg" width="1600" height="2400" loading="lazy" decoding="async" alt="ISO 27701 PIMS 內部稽核員_2026-08-07"></a><figcaption>點擊圖卡，開啟原尺寸圖片</figcaption></figure>
+<hr>
+<h3 id="pims-s12">💬 我的推理鏈</h3>
+<blockquote>
+<p>這堂課最關鍵的收穫是「控制者 vs 處理者」的角色判斷——原本以為只要碰到個資就是處理者，但其實「誰決定目的」才是判斷依據。內部部門不算處理者這點，課間活動 Q1 答錯後印象深刻。風險評鑑的公式很直覺（衝擊 × 機率），重點是 ≥12 分的門檻記住就好。稽核的「矯正 vs 矯正措施」也容易混淆，撲火 vs 裝偵煙器的比喻幫很大。</p>
+</blockquote>
+<h3 id="pims-s13">⚠️ 卡點紀錄</h3>
+<ul>
+<li>課間活動 PII 角色判斷 7 題對 5 題：電商（原答控制者→確認是控制者）、銀行（容易混淆外包部門）</li>
+<li>True/False Q1 答錯：內部部門 ≠ 處理者（因為不是獨立法律實體）</li>
+<li>明文 Email 登入 ≠ 傳輸加密（容易誤認為有加密保護）</li>
+<li>課後測驗 Q1 和 Q8 <mark class="warning-mark">待確認</mark></li>
+</ul>
+<h3 id="pims-s14">🔗 概念關聯</h3>
+<ul>
+<li><span class="unlinked" title="I11101 CIA 三要素">CIA 三要素</span>（ISO 27701 建立在 27001 的 CIA 基礎上）</li>
+<li><span class="unlinked" title="I11101 ISMS 資訊安全管理系統">ISMS 資訊安全管理系統</span>（27701 是 ISMS 的隱私延伸）</li>
+<li><span class="unlinked" title="L23401-數據隱私安全與合規">L23401-數據隱私安全與合規</span>（iPAS 科目三隱私章節，與本課高度重疊）</li>
+<li><span class="unlinked" title="L22404 資料隱私 K匿名性 l多樣性 t相近性">L22404 資料隱私 K匿名性 l多樣性 t相近性</span>（去識別化技術，與 PII 保護互補）</li>
+</ul>
+<hr>
+<h3 id="pims-s15">✅ 掌握程度</h3>
+<ul>
+<li>☐ 尚未過（比喻連續卡住）</li>
+<li>☑ 部分（課程完成，活動與測驗大部分通過，Q1/Q8 <mark class="warning-mark">待確認</mark>）</li>
+<li>☐ 通過（三層追問 + 驗收復盤完成）</li>
+</ul></div></details></div></div>
+</main>
+<footer><p>來源：Obsidian 學習筆記；最後更新 2026-09-15</p><a href="#main">回到頁首 ↑</a></footer>
+</body>
+</html>

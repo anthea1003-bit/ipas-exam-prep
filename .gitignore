@@ -1,0 +1,8 @@
+source/
+assets/*.png
+scripts/
+tests/
+evidence/
+PLAN.md
+REPORT.md
+.DS_Store
