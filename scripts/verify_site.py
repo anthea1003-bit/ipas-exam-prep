@@ -1,4 +1,4 @@
-"""Read-only acceptance checks; output is deliberately compact, 1–5 in order."""
+"""Read-only acceptance checks; output is deliberately compact, 1–6 in order."""
 from pathlib import Path
 from datetime import date, timedelta
 from html.parser import HTMLParser
@@ -20,12 +20,17 @@ class Page(HTMLParser):
         self.stack, self.errors, self.refs, self.ids, self.text = [], [], [], set(), []
         self.sections, self.scopes = {}, []
         self.schedule_rows, self.cell = [], None
+        self.checkboxes = []
         self.feed(text)
         self.close()
         assert not self.errors and not self.stack, (self.errors, self.stack)
 
     def handle_starttag(self, tag, pairs):
         attrs = dict(pairs)
+        if tag == 'input' and attrs.get('type') == 'checkbox':
+            self.checkboxes.append(attrs)
+            assert self.stack[-1] == 'th' and self.schedule_rows[-1]['cells'] == []
+            self.schedule_rows[-1].setdefault('checkboxes', []).append(attrs)
         if tag == 'tr' and 'data-schedule' in attrs:
             self.schedule_rows.append({'attrs': attrs, 'cells': []})
         if tag == 'td' and self.schedule_rows:
@@ -223,6 +228,29 @@ def check5():
     print('5 PASS: external JS/CSS/font/image dependencies 0; fetch/XHR/import calls 0; relative local assets only')
 
 
-checks = [check1, check2, check3, check4, check5]
+def check6():
+    page = pages['index.html']
+    assert len(page.checkboxes) == 96, len(page.checkboxes)
+    expected_keys = set()
+    for row in page.schedule_rows:
+        subject = row['attrs']['data-schedule']
+        boxes = row.get('checkboxes', [])
+        if subject == 'drill-summary':
+            assert not boxes
+            continue
+        day = row['attrs']['data-date']
+        key = f'ipas:completed:{subject}:{day}'
+        expected_keys.add(key)
+        assert len(boxes) == 1 and boxes[0]['data-completion-key'] == key
+        assert boxes[0].get('aria-label')
+    assert len(expected_keys) == 96
+    assert not pages['regulations.html'].checkboxes
+    assert all(identifier in page.ids for identifier in (
+        'completion-security-progress', 'completion-ai-progress',
+        'copy-progress', 'paste-progress', 'clear-progress'))
+    print('6 PASS: 96 leftmost checkboxes (security 41 + AI 55); unique date/subject keys; completion controls present')
+
+
+checks = [check1, check2, check3, check4, check5, check6]
 for check in ([checks[int(sys.argv[1])-1]] if len(sys.argv) > 1 else checks):
     check()

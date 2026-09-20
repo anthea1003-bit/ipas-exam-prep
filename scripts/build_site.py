@@ -167,6 +167,8 @@ class Renderer:
         cls = 'lesson-table' if learning else 'data-table'
         out = [f'<div class="table-scroll" role="region" tabindex="0" aria-label="{e(self.headings[-1][2])}">',
                f'<table class="{cls}">', '<thead><tr>']
+        if learning:
+            out.append('<th scope="col">完成</th>')
         out.extend(f'<th scope="col">{inline(c)}</th>' for c in rows[0])
         if learning or drill:
             out.append('<th scope="col">日期狀態</th>')
@@ -187,6 +189,11 @@ class Renderer:
                 attrs = f' data-date="{scheduled.isoformat()}" data-kind="{kind}"'
                 attrs += f' data-schedule="{subject if learning else "drill-summary"}"'
             out.append(f'<tr{attrs}>')
+            if learning:
+                key = f'ipas:completed:{subject}:{scheduled.isoformat()}'
+                label = f'{"資安" if subject == "security" else "AI"} {scheduled.isoformat()} 完成'
+                out.append('<th scope="row" class="completion-cell">'
+                           f'<input type="checkbox" data-completion-key="{key}" aria-label="{label}" disabled></th>')
             for idx, cell in enumerate(row):
                 out.append(f'<td data-label="{e(rows[0][idx])}">{inline(cell)}</td>')
             if learning or drill:
@@ -253,6 +260,15 @@ def build():
 <section class="countdown security"><p class="card-label">🔐 資安初級</p><p class="countdown-value"><strong data-countdown="2026-10-31">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 10 / 31・週六</p></section>
 <section class="countdown ai"><p class="card-label">🤖 AI 中級科三</p><p class="countdown-value"><strong data-countdown="2026-11-14">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 11 / 14・週六</p></section>
 </div>
+<section class="progress-panel completion-panel" aria-labelledby="completion-title">
+<div class="progress-heading"><h2 id="completion-title">完成進度</h2></div>
+<div class="completion-grid">
+<div><span id="completion-security-count">資安 0/41</span><progress id="completion-security-progress" max="41" value="0" aria-labelledby="completion-security-count"></progress></div>
+<div><span id="completion-ai-count">AI 0/55</span><progress id="completion-ai-progress" max="55" value="0" aria-labelledby="completion-ai-count"></progress></div>
+</div>
+<div class="completion-actions"><button type="button" id="copy-progress" disabled>複製進度碼</button><button type="button" id="paste-progress" disabled>貼上進度碼</button><button type="button" id="clear-progress" disabled>清除全部</button></div>
+<p id="completion-status" class="progress-caption" role="status">進度儲存在此裝置；可用進度碼在手機與 Mac 間合併。</p>
+</section>
 <section class="progress-panel" aria-labelledby="progress-title"><div class="progress-heading"><h2 id="progress-title">學習期・日期進度</h2><span id="progress-count">— / LESSON_COUNT 堂</span></div>
 <progress id="schedule-progress" max="LESSON_COUNT" value="0" aria-labelledby="progress-title"></progress>
 <div class="progress-caption"><p>依排定日期計算，不代表已完成學習。</p><p id="today-label">日期狀態於啟用 JavaScript 後顯示</p></div></section>

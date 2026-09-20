@@ -23,6 +23,15 @@
 <section class="countdown security"><p class="card-label">🔐 資安初級</p><p class="countdown-value"><strong data-countdown="2026-10-31">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 10 / 31・週六</p></section>
 <section class="countdown ai"><p class="card-label">🤖 AI 中級科三</p><p class="countdown-value"><strong data-countdown="2026-11-14">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 11 / 14・週六</p></section>
 </div>
+<section class="progress-panel completion-panel" aria-labelledby="completion-title">
+<div class="progress-heading"><h2 id="completion-title">完成進度</h2></div>
+<div class="completion-grid">
+<div><span id="completion-security-count">資安 0/41</span><progress id="completion-security-progress" max="41" value="0" aria-labelledby="completion-security-count"></progress></div>
+<div><span id="completion-ai-count">AI 0/55</span><progress id="completion-ai-progress" max="55" value="0" aria-labelledby="completion-ai-count"></progress></div>
+</div>
+<div class="completion-actions"><button type="button" id="copy-progress" disabled>複製進度碼</button><button type="button" id="paste-progress" disabled>貼上進度碼</button><button type="button" id="clear-progress" disabled>清除全部</button></div>
+<p id="completion-status" class="progress-caption" role="status">進度儲存在此裝置；可用進度碼在手機與 Mac 間合併。</p>
+</section>
 <section class="progress-panel" aria-labelledby="progress-title"><div class="progress-heading"><h2 id="progress-title">學習期・日期進度</h2><span id="progress-count">— / 66 堂</span></div>
 <progress id="schedule-progress" max="66" value="0" aria-labelledby="progress-title"></progress>
 <div class="progress-caption"><p>依排定日期計算，不代表已完成學習。</p><p id="today-label">日期狀態於啟用 JavaScript 後顯示</p></div></section>
@@ -55,6 +64,7 @@
 <div class="table-scroll" role="region" tabindex="0" aria-label="🔐 資安初級（9/21–10/31）— 41 天">
 <table class="lesson-table">
 <thead><tr>
+<th scope="col">完成</th>
 <th scope="col">日期</th>
 <th scope="col">範圍</th>
 <th scope="col">完整費曼（2）</th>
@@ -63,6 +73,7 @@
 </tr></thead>
 <tbody>
 <tr data-date="2026-09-21" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-21" aria-label="資安 2026-09-21 完成" disabled></th>
 <td data-label="日期">9/21</td>
 <td data-label="範圍">科一 存取控制①</td>
 <td data-label="完整費曼（2）">三種驗證因素與 MFA；DAC/MAC/RBAC/ABAC</td>
@@ -70,6 +81,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-22" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-22" aria-label="資安 2026-09-22 完成" disabled></th>
 <td data-label="日期">9/22</td>
 <td data-label="範圍">科一 存取控制②</td>
 <td data-label="完整費曼（2）">零信任；帳號生命週期與登入鎖定</td>
@@ -77,6 +89,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-23" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-23" aria-label="資安 2026-09-23 完成" disabled></th>
 <td data-label="日期">9/23</td>
 <td data-label="範圍">科一 資產分類與盤點</td>
 <td data-label="完整費曼（2）">擁有者決定分級／保管人；ISMS 流程順序</td>
@@ -84,6 +97,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-24" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-24" aria-label="資安 2026-09-24 完成" disabled></th>
 <td data-label="日期">9/24</td>
 <td data-label="範圍">科一 風險評鑑與處理</td>
 <td data-label="完整費曼（2）">風險處理四選項；風險評鑑流程</td>
@@ -91,6 +105,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-25" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-25" aria-label="資安 2026-09-25 完成" disabled></th>
 <td data-label="日期">9/25</td>
 <td data-label="範圍">科一 加解密與金鑰</td>
 <td data-label="完整費曼（2）">對稱 vs 非對稱與混合加密；雜湊與 Salt</td>
@@ -98,6 +113,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-26" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-26" aria-label="資安 2026-09-26 完成" disabled></th>
 <td data-label="日期">9/26</td>
 <td data-label="範圍">科一 事件與事故管理</td>
 <td data-label="完整費曼（2）">NIST 800-61 四階段；資安法事件分級取最高＋通報時限</td>
@@ -105,6 +121,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-27" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-27" aria-label="資安 2026-09-27 完成" disabled></th>
 <td data-label="日期">9/27</td>
 <td data-label="範圍">科一 備援與營運持續</td>
 <td data-label="完整費曼（2）">RPO/RTO/MTPD 邏輯；備份還原順序</td>
@@ -112,6 +129,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-28" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-28" aria-label="資安 2026-09-28 完成" disabled></th>
 <td data-label="日期">9/28</td>
 <td data-label="範圍">科一 管理概念＋ISO</td>
 <td data-label="完整費曼（2）">ISO 27001:2022（93 項／4 主題／新增 11）；ISO 家族配對</td>
@@ -119,6 +137,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-29" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-29" aria-label="資安 2026-09-29 完成" disabled></th>
 <td data-label="日期">9/29</td>
 <td data-label="範圍">科一 資安法</td>
 <td data-label="完整費曼（2）">危害國安產品例外流程（§11 vs §27）；適任性查核＋責任等級</td>
@@ -126,6 +145,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-30" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-09-30" aria-label="資安 2026-09-30 完成" disabled></th>
 <td data-label="日期">9/30</td>
 <td data-label="範圍">科一 個資法／GDPR／智財</td>
 <td data-label="完整費曼（2）">特種個資六項＋當事人五權；營業秘密三要件</td>
@@ -133,6 +153,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-01" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-01" aria-label="資安 2026-10-01 完成" disabled></th>
 <td data-label="日期">10/1</td>
 <td data-label="範圍">科一 B 級時事（只認得）</td>
 <td data-label="完整費曼（2）">—</td>
@@ -140,6 +161,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-02" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-02" aria-label="資安 2026-10-02 完成" disabled></th>
 <td data-label="日期">10/2</td>
 <td data-label="範圍">科一 總複習</td>
 <td data-label="完整費曼（2）">還沒過的概念補考</td>
@@ -147,6 +169,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-03" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-03" aria-label="資安 2026-10-03 完成" disabled></th>
 <td data-label="日期">10/3</td>
 <td data-label="範圍">科二 網路①</td>
 <td data-label="完整費曼（2）">OSI 各層對應協定設備；IDS vs IPS</td>
@@ -154,6 +177,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-04" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-04" aria-label="資安 2026-10-04 完成" disabled></th>
 <td data-label="日期">10/4</td>
 <td data-label="範圍">科二 網路②</td>
 <td data-label="完整費曼（2）">MITM/ARP/DNS 欺騙；VPN 與 TLS</td>
@@ -161,6 +185,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-05" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-05" aria-label="資安 2026-10-05 完成" disabled></th>
 <td data-label="日期">10/5</td>
 <td data-label="範圍">科二 網路③</td>
 <td data-label="完整費曼（2）">WPA3 與降級攻擊；必背 Port 12 個</td>
@@ -168,6 +193,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-06" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-06" aria-label="資安 2026-10-06 完成" disabled></th>
 <td data-label="日期">10/6</td>
 <td data-label="範圍">科二 作業系統</td>
 <td data-label="完整費曼（2）">系統強化與 GCB；Linux 權限／shadow／SUID</td>
@@ -175,6 +201,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-07" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-07" aria-label="資安 2026-10-07 完成" disabled></th>
 <td data-label="日期">10/7</td>
 <td data-label="範圍">科二 網頁攻擊①</td>
 <td data-label="完整費曼（2）">SQL Injection 與參數化查詢；XSS 三型與防禦層次</td>
@@ -182,6 +209,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-08" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-08" aria-label="資安 2026-10-08 完成" disabled></th>
 <td data-label="日期">10/8</td>
 <td data-label="範圍">科二 網頁攻擊②＋開發</td>
 <td data-label="完整費曼（2）">記憶體類漏洞（溢位／格式字串）；SSDLC 與 SAST/DAST</td>
@@ -189,6 +217,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-09" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-09" aria-label="資安 2026-10-09 完成" disabled></th>
 <td data-label="日期">10/9</td>
 <td data-label="範圍">科二 惡意程式與弱點</td>
 <td data-label="完整費曼（2）">病毒／蠕蟲／木馬／Rootkit 分辨；CVE/CVSS/CWE</td>
@@ -196,6 +225,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-10" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-10" aria-label="資安 2026-10-10 完成" disabled></th>
 <td data-label="日期">10/10</td>
 <td data-label="範圍">科二 資料安全與備份</td>
 <td data-label="完整費曼（2）">完整／差異／增量計算；3-2-1 與不可變備份</td>
@@ -203,6 +233,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-11" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-11" aria-label="資安 2026-10-11 完成" disabled></th>
 <td data-label="日期">10/11</td>
 <td data-label="範圍">科二 日誌管理</td>
 <td data-label="完整費曼（2）">日誌流程與 NTP／遠端 Log Server；Syslog 與 Windows 事件 ID</td>
@@ -210,6 +241,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-12" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-12" aria-label="資安 2026-10-12 完成" disabled></th>
 <td data-label="日期">10/12</td>
 <td data-label="範圍">科二 雲端／行動／IoT</td>
 <td data-label="完整費曼（2）">責任共擔；MDM vs MAM</td>
@@ -217,6 +249,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-13" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-13" aria-label="資安 2026-10-13 完成" disabled></th>
 <td data-label="日期">10/13</td>
 <td data-label="範圍">科二 B 級（只認得）</td>
 <td data-label="完整費曼（2）">—</td>
@@ -224,6 +257,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-14" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-14" aria-label="資安 2026-10-14 完成" disabled></th>
 <td data-label="日期">10/14</td>
 <td data-label="範圍">科二 總複習</td>
 <td data-label="完整費曼（2）">還沒過的概念補考</td>
@@ -231,6 +265,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-15" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-15" aria-label="資安 2026-10-15 完成" disabled></th>
 <td data-label="日期">10/15</td>
 <td data-label="範圍">緩衝</td>
 <td data-label="完整費曼（2）">兩科「還沒過」清單清零</td>
@@ -238,6 +273,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-16" data-kind="lesson" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-16" aria-label="資安 2026-10-16 完成" disabled></th>
 <td data-label="日期">10/16</td>
 <td data-label="範圍">緩衝</td>
 <td data-label="完整費曼（2）">名詞速查表快掃</td>
@@ -245,6 +281,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-17" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-17" aria-label="資安 2026-10-17 完成" disabled></th>
 <td data-label="日期">10/17</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科一 114-2 整份計時 50 題＋錯題回查清單</td>
@@ -252,6 +289,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-18" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-18" aria-label="資安 2026-10-18 完成" disabled></th>
 <td data-label="日期">10/18</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科二 114-2</td>
@@ -259,6 +297,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-19" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-19" aria-label="資安 2026-10-19 完成" disabled></th>
 <td data-label="日期">10/19</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科一 114-1</td>
@@ -266,6 +305,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-20" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-20" aria-label="資安 2026-10-20 完成" disabled></th>
 <td data-label="日期">10/20</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科二 114-1</td>
@@ -273,6 +313,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-21" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-21" aria-label="資安 2026-10-21 完成" disabled></th>
 <td data-label="日期">10/21</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科一 113-2</td>
@@ -280,6 +321,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-22" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-22" aria-label="資安 2026-10-22 完成" disabled></th>
 <td data-label="日期">10/22</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科二 113-2</td>
@@ -287,6 +329,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-23" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-23" aria-label="資安 2026-10-23 完成" disabled></th>
 <td data-label="日期">10/23</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科一 113-1</td>
@@ -294,6 +337,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-24" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-24" aria-label="資安 2026-10-24 完成" disabled></th>
 <td data-label="日期">10/24</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科二 113-1</td>
@@ -301,6 +345,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-25" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-25" aria-label="資安 2026-10-25 完成" disabled></th>
 <td data-label="日期">10/25</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科一 112-2</td>
@@ -308,6 +353,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-26" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-26" aria-label="資安 2026-10-26 完成" disabled></th>
 <td data-label="日期">10/26</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">科二 112-2</td>
@@ -315,6 +361,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-27" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-27" aria-label="資安 2026-10-27 完成" disabled></th>
 <td data-label="日期">10/27</td>
 <td data-label="範圍">刷題</td>
 <td data-label="完整費曼（2）">錯題總回顧＋圖題全集第二次</td>
@@ -322,6 +369,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-28" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-28" aria-label="資安 2026-10-28 完成" disabled></th>
 <td data-label="日期">10/28</td>
 <td data-label="範圍">模擬</td>
 <td data-label="完整費曼（2）">科一 115-1 重做（計時）</td>
@@ -329,6 +377,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-29" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-29" aria-label="資安 2026-10-29 完成" disabled></th>
 <td data-label="日期">10/29</td>
 <td data-label="範圍">模擬</td>
 <td data-label="完整費曼（2）">科二 115-1 重做（計時）</td>
@@ -336,6 +385,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-30" data-kind="drill" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-30" aria-label="資安 2026-10-30 完成" disabled></th>
 <td data-label="日期">10/30</td>
 <td data-label="範圍">收尾</td>
 <td data-label="完整費曼（2）">弱點精讀 30 分＋早睡</td>
@@ -343,6 +393,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-31" data-kind="exam" data-schedule="security">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:security:2026-10-31" aria-label="資安 2026-10-31 完成" disabled></th>
 <td data-label="日期">10/31</td>
 <td data-label="範圍"><strong>資安考試</strong></td>
 <td data-label="完整費曼（2）"></td>
@@ -356,6 +407,7 @@
 <div class="table-scroll" role="region" tabindex="0" aria-label="🤖 AI 中級科三（9/21–11/14）— 55 天">
 <table class="lesson-table">
 <thead><tr>
+<th scope="col">完成</th>
 <th scope="col">日期</th>
 <th scope="col">區塊</th>
 <th scope="col">完整費曼（2）</th>
@@ -364,6 +416,7 @@
 </tr></thead>
 <tbody>
 <tr data-date="2026-09-21" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-21" aria-label="AI 2026-09-21 完成" disabled></th>
 <td data-label="日期">9/21</td>
 <td data-label="區塊">A 區 CNN</td>
 <td data-label="完整費曼（2）">Conv2D 參數量</td>
@@ -371,6 +424,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-22" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-22" aria-label="AI 2026-09-22 完成" disabled></th>
 <td data-label="日期">9/22</td>
 <td data-label="區塊">A 區 CNN</td>
 <td data-label="完整費曼（2）">Dense 參數量／Flatten</td>
@@ -378,6 +432,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-23" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-23" aria-label="AI 2026-09-23 完成" disabled></th>
 <td data-label="日期">9/23</td>
 <td data-label="區塊">A 區 CNN</td>
 <td data-label="完整費曼（2）"></td>
@@ -385,6 +440,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-24" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-24" aria-label="AI 2026-09-24 完成" disabled></th>
 <td data-label="日期">9/24</td>
 <td data-label="區塊">A 區 深層網路</td>
 <td data-label="完整費曼（2）">ResNet 殘差</td>
@@ -392,6 +448,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-25" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-25" aria-label="AI 2026-09-25 完成" disabled></th>
 <td data-label="日期">9/25</td>
 <td data-label="區塊">A 區 深層網路</td>
 <td data-label="完整費曼（2）">遷移學習凍結與微調</td>
@@ -399,6 +456,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-26" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-26" aria-label="AI 2026-09-26 完成" disabled></th>
 <td data-label="日期">9/26</td>
 <td data-label="區塊">A 區 深層網路</td>
 <td data-label="完整費曼（2）"></td>
@@ -406,6 +464,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-27" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-27" aria-label="AI 2026-09-27 完成" disabled></th>
 <td data-label="日期">9/27</td>
 <td data-label="區塊">A 區 Transformer</td>
 <td data-label="完整費曼（2）">縮放點積注意力</td>
@@ -413,6 +472,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-28" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-28" aria-label="AI 2026-09-28 完成" disabled></th>
 <td data-label="日期">9/28</td>
 <td data-label="區塊">A 區 Transformer</td>
 <td data-label="完整費曼（2）">多頭注意力形狀鏈</td>
@@ -420,6 +480,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-29" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-29" aria-label="AI 2026-09-29 完成" disabled></th>
 <td data-label="日期">9/29</td>
 <td data-label="區塊">A 區 Transformer</td>
 <td data-label="完整費曼（2）"></td>
@@ -427,6 +488,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-09-30" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-09-30" aria-label="AI 2026-09-30 完成" disabled></th>
 <td data-label="日期">9/30</td>
 <td data-label="區塊">B 區 評估①</td>
 <td data-label="完整費曼（2）">混淆矩陣四格</td>
@@ -434,6 +496,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-01" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-01" aria-label="AI 2026-10-01 完成" disabled></th>
 <td data-label="日期">10/1</td>
 <td data-label="區塊">B 區 評估①</td>
 <td data-label="完整費曼（2）">Precision/Recall/F1（Recall 勘誤）</td>
@@ -441,6 +504,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-02" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-02" aria-label="AI 2026-10-02 完成" disabled></th>
 <td data-label="日期">10/2</td>
 <td data-label="區塊">B 區 評估①</td>
 <td data-label="完整費曼（2）"></td>
@@ -448,6 +512,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-03" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-03" aria-label="AI 2026-10-03 完成" disabled></th>
 <td data-label="日期">10/3</td>
 <td data-label="區塊">B 區 評估②</td>
 <td data-label="完整費曼（2）">過擬合判讀</td>
@@ -455,6 +520,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-04" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-04" aria-label="AI 2026-10-04 完成" disabled></th>
 <td data-label="日期">10/4</td>
 <td data-label="區塊">B 區 評估②</td>
 <td data-label="完整費曼（2）">交叉驗證選型</td>
@@ -462,6 +528,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-05" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-05" aria-label="AI 2026-10-05 完成" disabled></th>
 <td data-label="日期">10/5</td>
 <td data-label="區塊">B 區 評估②</td>
 <td data-label="完整費曼（2）"></td>
@@ -469,6 +536,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-06" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-06" aria-label="AI 2026-10-06 完成" disabled></th>
 <td data-label="日期">10/6</td>
 <td data-label="區塊">C 區 優化①</td>
 <td data-label="完整費曼（2）">L1 vs L2</td>
@@ -476,6 +544,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-07" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-07" aria-label="AI 2026-10-07 完成" disabled></th>
 <td data-label="日期">10/7</td>
 <td data-label="區塊">C 區 優化①</td>
 <td data-label="完整費曼（2）">學習率與優化器</td>
@@ -483,6 +552,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-08" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-08" aria-label="AI 2026-10-08 完成" disabled></th>
 <td data-label="日期">10/8</td>
 <td data-label="區塊">C 區 優化①</td>
 <td data-label="完整費曼（2）"></td>
@@ -490,6 +560,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-09" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-09" aria-label="AI 2026-10-09 完成" disabled></th>
 <td data-label="日期">10/9</td>
 <td data-label="區塊">C 區 優化②</td>
 <td data-label="完整費曼（2）">模型壓縮三法</td>
@@ -497,6 +568,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-10" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-10" aria-label="AI 2026-10-10 完成" disabled></th>
 <td data-label="日期">10/10</td>
 <td data-label="區塊">C 區 優化②</td>
 <td data-label="完整費曼（2）">梯度裁剪位置</td>
@@ -504,6 +576,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-11" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-11" aria-label="AI 2026-10-11 完成" disabled></th>
 <td data-label="日期">10/11</td>
 <td data-label="區塊">D 區 特徵①</td>
 <td data-label="完整費曼（2）">標準化</td>
@@ -511,6 +584,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-12" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-12" aria-label="AI 2026-10-12 完成" disabled></th>
 <td data-label="日期">10/12</td>
 <td data-label="區塊">D 區 特徵①</td>
 <td data-label="完整費曼（2）">One-Hot 陷阱</td>
@@ -518,6 +592,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-13" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-13" aria-label="AI 2026-10-13 完成" disabled></th>
 <td data-label="日期">10/13</td>
 <td data-label="區塊">D 區 特徵①</td>
 <td data-label="完整費曼（2）"></td>
@@ -525,6 +600,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-14" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-14" aria-label="AI 2026-10-14 完成" disabled></th>
 <td data-label="日期">10/14</td>
 <td data-label="區塊">D 區 特徵②</td>
 <td data-label="完整費曼（2）">資料不平衡 SMOTE</td>
@@ -532,6 +608,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-15" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-15" aria-label="AI 2026-10-15 完成" disabled></th>
 <td data-label="日期">10/15</td>
 <td data-label="區塊">D 區 特徵②</td>
 <td data-label="完整費曼（2）">缺失值處理</td>
@@ -539,6 +616,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-16" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-16" aria-label="AI 2026-10-16 完成" disabled></th>
 <td data-label="日期">10/16</td>
 <td data-label="區塊">D 區 特徵②</td>
 <td data-label="完整費曼（2）"></td>
@@ -546,6 +624,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-17" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-17" aria-label="AI 2026-10-17 完成" disabled></th>
 <td data-label="日期">10/17</td>
 <td data-label="區塊">G 區 數學</td>
 <td data-label="完整費曼（2）">蒙地卡羅</td>
@@ -553,6 +632,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-18" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-18" aria-label="AI 2026-10-18 完成" disabled></th>
 <td data-label="日期">10/18</td>
 <td data-label="區塊">G 區 數學</td>
 <td data-label="完整費曼（2）">貝氏定理</td>
@@ -560,6 +640,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-19" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-19" aria-label="AI 2026-10-19 完成" disabled></th>
 <td data-label="日期">10/19</td>
 <td data-label="區塊">G 區 數學</td>
 <td data-label="完整費曼（2）"></td>
@@ -567,6 +648,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-20" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-20" aria-label="AI 2026-10-20 完成" disabled></th>
 <td data-label="日期">10/20</td>
 <td data-label="區塊">H 區 治理</td>
 <td data-label="完整費曼（2）">同態加密</td>
@@ -574,6 +656,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-21" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-21" aria-label="AI 2026-10-21 完成" disabled></th>
 <td data-label="日期">10/21</td>
 <td data-label="區塊">H 區 治理</td>
 <td data-label="完整費曼（2）">統計均等與去偏三階段</td>
@@ -581,6 +664,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-22" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-22" aria-label="AI 2026-10-22 完成" disabled></th>
 <td data-label="日期">10/22</td>
 <td data-label="區塊">E 區 演算法</td>
 <td data-label="完整費曼（2）">XGBoost vs GBDT</td>
@@ -588,6 +672,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-23" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-23" aria-label="AI 2026-10-23 完成" disabled></th>
 <td data-label="日期">10/23</td>
 <td data-label="區塊">E 區 演算法</td>
 <td data-label="完整費曼（2）">K-means vs DBSCAN</td>
@@ -595,6 +680,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-24" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-24" aria-label="AI 2026-10-24 完成" disabled></th>
 <td data-label="日期">10/24</td>
 <td data-label="區塊">E 區 演算法</td>
 <td data-label="完整費曼（2）"></td>
@@ -602,6 +688,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-25" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-25" aria-label="AI 2026-10-25 完成" disabled></th>
 <td data-label="日期">10/25</td>
 <td data-label="區塊">E 區 演算法</td>
 <td data-label="完整費曼（2）"></td>
@@ -609,6 +696,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-26" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-26" aria-label="AI 2026-10-26 完成" disabled></th>
 <td data-label="日期">10/26</td>
 <td data-label="區塊">F 區</td>
 <td data-label="完整費曼（2）">可解釋性優先；RAG 混合搜尋</td>
@@ -616,6 +704,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-27" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-27" aria-label="AI 2026-10-27 完成" disabled></th>
 <td data-label="日期">10/27</td>
 <td data-label="區塊">總複習</td>
 <td data-label="完整費曼（2）">還沒過清零；四大計算題（參數量）做 3 題</td>
@@ -623,6 +712,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-28" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-28" aria-label="AI 2026-10-28 完成" disabled></th>
 <td data-label="日期">10/28</td>
 <td data-label="區塊">總複習</td>
 <td data-label="完整費曼（2）">還沒過清零；四大計算題（混淆矩陣）做 3 題</td>
@@ -630,6 +720,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-29" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-29" aria-label="AI 2026-10-29 完成" disabled></th>
 <td data-label="日期">10/29</td>
 <td data-label="區塊">總複習</td>
 <td data-label="完整費曼（2）">還沒過清零；四大計算題（Grid）做 3 題</td>
@@ -637,6 +728,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-30" data-kind="lesson" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-30" aria-label="AI 2026-10-30 完成" disabled></th>
 <td data-label="日期">10/30</td>
 <td data-label="區塊">總複習</td>
 <td data-label="完整費曼（2）">還沒過清零；四大計算題（形狀鏈）做 3 題</td>
@@ -644,6 +736,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-10-31" data-kind="rest" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-31" aria-label="AI 2026-10-31 完成" disabled></th>
 <td data-label="日期">10/31</td>
 <td data-label="區塊">休息（資安考試日）</td>
 <td data-label="完整費曼（2）"></td>
@@ -651,6 +744,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-01" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-01" aria-label="AI 2026-11-01 完成" disabled></th>
 <td data-label="日期">11/1</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">114-2 整份計時</td>
@@ -658,6 +752,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-02" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-02" aria-label="AI 2026-11-02 完成" disabled></th>
 <td data-label="日期">11/2</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">114-2 錯題檢討＋回查清單</td>
@@ -665,6 +760,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-03" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-03" aria-label="AI 2026-11-03 完成" disabled></th>
 <td data-label="日期">11/3</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">115-1 整份計時</td>
@@ -672,6 +768,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-04" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-04" aria-label="AI 2026-11-04 完成" disabled></th>
 <td data-label="日期">11/4</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">115-1 錯題檢討</td>
@@ -679,6 +776,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-05" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-05" aria-label="AI 2026-11-05 完成" disabled></th>
 <td data-label="日期">11/5</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">官方樣題</td>
@@ -686,6 +784,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-06" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-06" aria-label="AI 2026-11-06 完成" disabled></th>
 <td data-label="日期">11/6</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">115-2 補充題組（批次矩陣與影像通道）</td>
@@ -693,6 +792,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-07" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-07" aria-label="AI 2026-11-07 完成" disabled></th>
 <td data-label="日期">11/7</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">115-2 模擬 49 題</td>
@@ -700,6 +800,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-08" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-08" aria-label="AI 2026-11-08 完成" disabled></th>
 <td data-label="日期">11/8</td>
 <td data-label="區塊">刷題</td>
 <td data-label="完整費曼（2）">模擬檢討</td>
@@ -707,6 +808,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-09" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-09" aria-label="AI 2026-11-09 完成" disabled></th>
 <td data-label="日期">11/9</td>
 <td data-label="區塊">專練</td>
 <td data-label="完整費曼（2）">計算題專練（參數量／混淆矩陣／Grid／形狀）</td>
@@ -714,6 +816,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-10" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-10" aria-label="AI 2026-11-10 完成" disabled></th>
 <td data-label="日期">11/10</td>
 <td data-label="區塊">模擬</td>
 <td data-label="完整費曼（2）">混合模擬</td>
@@ -721,6 +824,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-11" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-11" aria-label="AI 2026-11-11 完成" disabled></th>
 <td data-label="日期">11/11</td>
 <td data-label="區塊">精讀</td>
 <td data-label="完整費曼（2）">弱點精讀</td>
@@ -728,6 +832,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-12" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-12" aria-label="AI 2026-11-12 完成" disabled></th>
 <td data-label="日期">11/12</td>
 <td data-label="區塊">模擬</td>
 <td data-label="完整費曼（2）">最終模擬</td>
@@ -735,6 +840,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-13" data-kind="drill" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-13" aria-label="AI 2026-11-13 完成" disabled></th>
 <td data-label="日期">11/13</td>
 <td data-label="區塊">收尾</td>
 <td data-label="完整費曼（2）">輕複習＋早睡</td>
@@ -742,6 +848,7 @@
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-14" data-kind="exam" data-schedule="ai">
+<th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-11-14" aria-label="AI 2026-11-14 完成" disabled></th>
 <td data-label="日期">11/14</td>
 <td data-label="區塊"><strong>AI 考試</strong></td>
 <td data-label="完整費曼（2）"></td>
