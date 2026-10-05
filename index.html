@@ -32,8 +32,8 @@
 <div class="completion-actions"><button type="button" id="copy-progress" disabled>複製進度碼</button><button type="button" id="paste-progress" disabled>貼上進度碼</button><button type="button" id="clear-progress" disabled>清除全部</button></div>
 <p id="completion-status" class="progress-caption" role="status">進度儲存在此裝置；可用進度碼在手機與 Mac 間合併。</p>
 </section>
-<section class="progress-panel" aria-labelledby="progress-title"><div class="progress-heading"><h2 id="progress-title">學習期・日期進度</h2><span id="progress-count">— / 64 堂</span></div>
-<progress id="schedule-progress" max="64" value="0" aria-labelledby="progress-title"></progress>
+<section class="progress-panel" aria-labelledby="progress-title"><div class="progress-heading"><h2 id="progress-title">學習期・日期進度</h2><span id="progress-count">— / 66 堂</span></div>
+<progress id="schedule-progress" max="66" value="0" aria-labelledby="progress-title"></progress>
 <div class="progress-caption"><p>依排定日期計算，不代表已完成學習。</p><p id="today-label">日期狀態於啟用 JavaScript 後顯示</p></div></section>
 <noscript><p class="notice">JavaScript 未啟用：倒數、日期狀態與進度不計算；完整課表仍可閱讀。</p></noscript></section>
 <div class="reading-layout"><aside class="page-toc"><nav aria-label="頁內目錄"><p class="toc-label">本頁目錄</p><a href="#plan-s1" class="toc-level-2">讀書計畫：資安初級 + AI 中級科三（2026/9/21–11/14）</a>
@@ -51,17 +51,17 @@
 <hr>
 <h3 id="plan-s2">讀書原則</h3>
 <ul>
-<li>一般雙科學習日合計 2 小時：資安 60 分鐘＋AI 科目三 60 分鐘；完整模考另計。模考日該科不另排學習，減量、休息及考後安排依逐日表（原本每週二／六各 1 小時）。</li>
+<li>一般雙科學習日合計 2 小時：資安 60 分鐘＋AI 科目三 60 分鐘；完整模考另計。模考日該科不另排學習，減量、休息及考後安排依逐日表。</li>
 <li>兩科都是「考前兩週純刷題」：資安 10/17–10/30（考 10/31）；AI 10/31–11/13（考 11/14，10/31 資安考試日 AI 休息）。</li>
 <li>一般 60 分鐘學習日的固定結構：複習 10 分＋核心費曼 20 分＋快速比較 10 分＋小題組與錯題 20 分；題目併入既有時段、不重複加時，替換／減量依逐日表；完整模考日不套用此結構。</li>
 <li>AI 中級官方及格線 70 分；科一與科三皆須 70 分才授證。</li>
-<li>每天每科 60 分鐘是學習時間；完整模考（資安連續 75 分、AI 連續 90 分）另外計時，不計入 60 分鐘；模考日該科只做模考、不另排學習，檢討原則上移隔天（資安 10/28、10/29 兩卷合併於 10/30 檢討）；另一科當天原則上維持 60 分鐘，休息安排依逐日表。考前安排：10/27 40 分、10/28–10/29 AI 不排、10/30 20 分，10/31 休息。11/1 起資安考後不再排學習；AI 依逐日表安排學習（最多 60 分鐘）或模考，不再自動加排資安的 1 小時。</li>
+<li>一般學習日每科 60 分鐘是學習時間；完整模考（資安連續 75 分、AI 連續 90 分）另外計時，不計入 60 分鐘；模考日該科只做模考、不另排學習，檢討原則上移隔天（資安 10/28、10/29 兩卷合併於 10/30 檢討）；另一科當天原則上維持 60 分鐘，考前減量與休息安排依逐日表。考前安排：10/27 40 分、10/28–10/29 各 20 分（計算題各 3 題）、10/30 20 分，10/31 休息。11/1 起資安考後不再排學習；AI 依逐日表安排學習（最多 60 分鐘）或模考，不再自動加排資安的 1 小時。</li>
 <li>練習目標：未看答案的混合題 75–80%，且能解釋錯選項。</li>
 <li>題目來源：資安歷屆卷與 AI 114-2、115-1 為正式；AI 官方樣題另列。AI 只排學習指引《機器學習技術與運用》、正式卷 114-2／115-1 與官方樣題 114 年 9 月版科目三的考點；不排僅見於非官方題或第三方網站的項目。程式題只練正式卷出現過的題型；教學與出題須標出處，查不到就不教。混合模擬逐題沿用來源標籤，不視為官方全卷。</li>
-<li>AI 比重為混合統計，僅供排序，非官方配分；四塊約佔七成，只讀四塊不夠，其餘三成至少要拿一半。</li>
+<li>AI 比重為混合統計，僅供排序，非官方配分。</li>
 <li>三種讀法：<strong>完整費曼</strong>（三層追問＋驗收）只用在逐字重考／配分最重的核心；<strong>快速模式</strong>（講一輪＋一題）用在其餘 A 級；<strong>只認得</strong>（讀清單＋名詞速查表，不追問）用在 B 級時事與進階名詞。</li>
 <li>已學過的概念不重教，排進複習雷達：資安＝CIA 三要素與延伸屬性、封包過濾式防火牆、DoS/DDoS 與 SYN Flood、VLAN 雙重標籤、識別→驗證→授權→可歸責（9/20 過）、資安法規總整理（未驗收）；AI＝PCA 五概念、SVM vs SVD、CNN/VGG、Transformer 講稿、損失函數與輸出層（詳見 iCloud 學習狀態.md）。</li>
-<li>知識點來源：資安＝Drive <code>資訊安全工程師/資安初級_必會知識點_以終為始_20260919.md</code>；AI＝<code>讀書計畫-AI科三範圍收斂_20261005_v4.md</code> 的範圍規則與逐日表。每天的「概念」欄直接引用對應條目文字，不要自創。</li>
+<li>知識點來源：資安＝Drive 資訊安全工程師/資安初級_必會知識點_以終為始_20260919.md；AI＝讀書計畫-AI科三範圍收斂_20261005_v4.md 的範圍規則與逐日表。每天的「核心費曼」與「快速比較」（AI 表作「快速」）欄直接引用對應條目文字，不要自創。</li>
 </ul>
 <ul>
 <li>AI 學習順序：9/21–10/4 保留原計畫；10/5 起依《讀書計畫-AI科三範圍收斂_20261005_v4.md》的範圍規則與逐日表。</li>
@@ -958,7 +958,7 @@
 <td data-label="核心費曼（20 分）">XGBoost vs GBDT（115-1 Q16）</td>
 <td data-label="快速（10 分）">Random Forest（115-1 Q28）；決策樹資訊增益</td>
 <td data-label="程式題型">—</td>
-<td data-label="併入／安排內容">無新增；AutoML依現行版留10/25，不沿用舊建議10/23</td>
+<td data-label="併入／安排內容">無新增；AutoML 留10/25</td>
 <td data-label="替換與減量（不另加時）">無</td>
 <td data-label="學習分鐘">60</td>
 <td data-label="模考分鐘（另計）">0</td>
@@ -1016,29 +1016,29 @@
 <td data-label="模考分鐘（另計）">0</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
-<tr data-date="2026-10-28" data-kind="rest" data-schedule="ai">
+<tr data-date="2026-10-28" data-kind="lesson" data-schedule="ai">
 <th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-28" aria-label="AI 2026-10-28 完成" disabled></th>
 <td data-label="日期">10/28</td>
-<td data-label="複習">休息</td>
-<td data-label="核心費曼（20 分）">不排（資安計時重做日，AI 休息）</td>
+<td data-label="複習">總複習</td>
+<td data-label="核心費曼（20 分）">混淆矩陣手算 P/R/F1 類 3 題</td>
 <td data-label="快速（10 分）"></td>
 <td data-label="程式題型">—</td>
 <td data-label="併入／安排內容"></td>
 <td data-label="替換與減量（不另加時）"></td>
-<td data-label="學習分鐘">0</td>
+<td data-label="學習分鐘">20</td>
 <td data-label="模考分鐘（另計）">0</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
-<tr data-date="2026-10-29" data-kind="rest" data-schedule="ai">
+<tr data-date="2026-10-29" data-kind="lesson" data-schedule="ai">
 <th scope="row" class="completion-cell"><input type="checkbox" data-completion-key="ipas:completed:ai:2026-10-29" aria-label="AI 2026-10-29 完成" disabled></th>
 <td data-label="日期">10/29</td>
-<td data-label="複習">休息</td>
-<td data-label="核心費曼（20 分）">不排（資安計時重做日，AI 休息）</td>
+<td data-label="複習">總複習</td>
+<td data-label="核心費曼（20 分）">Grid 組合數類 3 題</td>
 <td data-label="快速（10 分）"></td>
 <td data-label="程式題型">—</td>
 <td data-label="併入／安排內容"></td>
 <td data-label="替換與減量（不另加時）"></td>
-<td data-label="學習分鐘">0</td>
+<td data-label="學習分鐘">20</td>
 <td data-label="模考分鐘（另計）">0</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
@@ -1089,7 +1089,7 @@
 <td data-label="快速（10 分）"></td>
 <td data-label="程式題型">114-Q1–50錯題；程式114-Q38–50按錯題挑選</td>
 <td data-label="併入／安排內容">114整卷錯題檢討60分：核對與分類10分＋非程式錯題20分＋程式錯題30分（挑錯題重做10分、解釋與回查20分）；程式全題已包含前日完整模考</td>
-<td data-label="替換與減量（不另加時）">撤回上一草案整套程式題補做；回復整卷檢討，程式只重做錯題；未完回查留11/08限額</td>
+<td data-label="替換與減量（不另加時）">整卷檢討，程式只重做錯題；未完回查留11/08限額</td>
 <td data-label="學習分鐘">60</td>
 <td data-label="模考分鐘（另計）">0</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
@@ -1115,7 +1115,7 @@
 <td data-label="快速（10 分）"></td>
 <td data-label="程式題型">115-Q1–50錯題；程式115-Q40–50按錯題挑選</td>
 <td data-label="併入／安排內容">115整卷錯題檢討60分：核對與分類10分＋非程式錯題20分＋程式錯題30分（挑錯題重做10分、解釋與回查20分）；程式全題已包含前日完整模考</td>
-<td data-label="替換與減量（不另加時）">撤回上一草案整套程式題補做；回復整卷檢討，程式只重做錯題；未完回查留11/08限額</td>
+<td data-label="替換與減量（不另加時）">整卷檢討，程式只重做錯題；未完回查留11/08限額</td>
 <td data-label="學習分鐘">60</td>
 <td data-label="模考分鐘（另計）">0</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
@@ -1377,7 +1377,7 @@
 <td data-label="日期">11/1</td>
 <td data-label="科目">AI 科三</td>
 <td data-label="階段">刷題</td>
-<td data-label="內容">114-2 整份計時（連續 90 分）；模考另計，當日不另排學習，檢討移隔天；完整連續 90 分鐘模考，計時另計；當日不另排學習，檢討移隔天。；學習 0 分鐘；模考 90 分鐘（另計）</td>
+<td data-label="內容">114-2 整份計時（連續 90 分）；模考另計，當日不另排學習，檢討移隔天；學習 0 分鐘；模考 90 分鐘（另計）</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-02" data-kind="drill" data-schedule="drill-summary">
@@ -1391,7 +1391,7 @@
 <td data-label="日期">11/3</td>
 <td data-label="科目">AI 科三</td>
 <td data-label="階段">刷題</td>
-<td data-label="內容">115-1 整份計時（連續 90 分）；模考另計，當日不另排學習，檢討移隔天；完整連續 90 分鐘模考，計時另計；當日不另排學習，檢討移隔天。；學習 0 分鐘；模考 90 分鐘（另計）</td>
+<td data-label="內容">115-1 整份計時（連續 90 分）；模考另計，當日不另排學習，檢討移隔天；學習 0 分鐘；模考 90 分鐘（另計）</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-04" data-kind="drill" data-schedule="drill-summary">
@@ -1419,7 +1419,7 @@
 <td data-label="日期">11/7</td>
 <td data-label="科目">AI 科三</td>
 <td data-label="階段">模擬</td>
-<td data-label="內容">混合模擬（連續 90 分；題目只取範圍規則內的考點）；模考另計，當日不另排學習，檢討移隔天；完整連續 90 分鐘模考，計時另計；當日不另排學習，檢討移隔天。；學習 0 分鐘；模考 90 分鐘（另計）</td>
+<td data-label="內容">混合模擬（連續 90 分；題目只取範圍規則內的考點）；模考另計，當日不另排學習，檢討移隔天；學習 0 分鐘；模考 90 分鐘（另計）</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-08" data-kind="drill" data-schedule="drill-summary">
@@ -1440,7 +1440,7 @@
 <td data-label="日期">11/10</td>
 <td data-label="科目">AI 科三</td>
 <td data-label="階段">模擬</td>
-<td data-label="內容">混合模擬（連續 90 分；範圍規則內）；模考另計，當日不另排學習，檢討移隔天；完整連續 90 分鐘模考，計時另計；當日不另排學習，檢討移隔天。；學習 0 分鐘；模考 90 分鐘（另計）</td>
+<td data-label="內容">混合模擬（連續 90 分；範圍規則內）；模考另計，當日不另排學習，檢討移隔天；學習 0 分鐘；模考 90 分鐘（另計）</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-11" data-kind="drill" data-schedule="drill-summary">
@@ -1454,7 +1454,7 @@
 <td data-label="日期">11/12</td>
 <td data-label="科目">AI 科三</td>
 <td data-label="階段">模擬</td>
-<td data-label="內容">最終模擬（連續 90 分；範圍規則內）；模考另計，當日不另排學習，檢討移隔天；完整連續 90 分鐘模考，計時另計；當日不另排學習，檢討移隔天。；學習 0 分鐘；模考 90 分鐘（另計）</td>
+<td data-label="內容">最終模擬（連續 90 分；範圍規則內）；模考另計，當日不另排學習，檢討移隔天；學習 0 分鐘；模考 90 分鐘（另計）</td>
 <td class="date-status" data-label="日期狀態">已排定</td>
 </tr>
 <tr data-date="2026-11-13" data-kind="drill" data-schedule="drill-summary">
@@ -1469,20 +1469,19 @@
 <hr>
 <h3 id="plan-s9">備註</h3>
 <ul>
-<li>每天流程：一般學習日 /coach → 複習 10 分 → 核心費曼 20 分 → 快速比較 10 分 → 小題組與錯題 20 分 → /update-learning；逐日表有替換／減量時依表，模考另計且當日不另排學習。</li>
+<li>每天流程：一般學習日 /coach → 依讀書原則與逐日表完成各時段 → /update-learning。</li>
 <li>進度落後時：優先保住高佔比（資安 科一存取控制、科二網路通訊；AI A 區 22%、B 區 19%，為混合統計，僅供排序、非官方配分）。</li>
 <li>2026-09-11 修正：原日期晚一天，已改回實際週二／週六</li>
-<li>2026-09-20 改版：每天 2 小時，三種讀法，考前兩週刷題</li>
-<li>2026-09-21 補：依科目三分析更正版第 6 節，補五星『＋』項目（L23401 治理 11 項併入 H 區、其餘 8 項分散快速欄）</li>
-<li>2026-09-25 修正：依審查五項——及格線 70、比重為混合統計、科二新科技升級、模擬49只有1題、模擬日時間結構。</li>
+<li>2026-09-20 改版：改為一般雙科學習日每天 2 小時，採三種讀法與考前兩週刷題；現行模考另計。</li>
+<li>2026-09-21、09-25 的修訂已被 10/05 v4 取代。</li>
 <li>2026-10-05：AI 逐日表已同步為 v4（讀書計畫-AI科三範圍收斂_20261005_v4.md）。</li>
-<li>v4 補強五類缺口：VGG16 結構與資源判讀、正式卷程式題型排程、A 區部分項目複習、同態加密安全分工組合、LoRA 正答勘誤；另依核准項目補 AutoML、非凸最佳化與題號校正。</li>
+<li>v4 補強五類缺口：VGG16 結構與資源判讀、正式卷程式題型排程、A 區部分項目複習、同態加密安全分工組合、LoRA 正答勘誤；另補 AutoML、非凸最佳化與題號校正。</li>
 </ul>
 <ul>
-<li>2026-10-05 本次修訂：納入正式卷題號、24 題程式題首輪及五項補強；學習與模考分計，模考日不另排學習；考前安排：10/27 40 分、10/28–10/29 AI 不排、10/30 20 分；資安 115-1 兩份重做卷於 10/30 合併檢討。</li>
+<li>2026-10-05 本次修訂（v6）：保留正式卷題號、24 題程式題首輪及五項補強；10/28、10/29 各安排指定計算題 3 題、學習 20 分鐘；補齊程式題型表頭並精簡舊備註。</li>
 </ul>
 <ul>
-<li>9/21–10/4 保留原逐日安排；空白欄表示當天未另排該模式的新概念。考前安排：10/27 40 分、10/28–10/29 AI 不排、10/30 20 分，各日內容以逐日表為準。</li>
+<li>9/21–10/4 保留原逐日安排；空白欄表示當天未另排該模式的新概念。考前安排：10/27 40 分、10/28–10/29 各 20 分（計算題各 3 題）、10/30 20 分，各日內容以逐日表為準。</li>
 </ul>
 <ul>
 <li>114-Qn＝114-2 正式卷第 n 題；115-Qn＝115-1 正式卷第 n 題。程式題首輪指10/06起此次指定練習，既有10/05安排保留。</li>

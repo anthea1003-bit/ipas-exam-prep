@@ -10,7 +10,7 @@ import sys
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN_SHA256 = '36c898237cce592ce63e4e6d8104076324b745a0be44f7845602abaefa5b697e'
+PLAN_SHA256 = 'd9ebd791f1a3956fdda2396ae2e0a0132d1d39302f272b193e3172403e8f13b5'
 SECURITY_SOURCE_SHA256 = 'ca9117691269ecc5400c07e70d3e49dffa3b2d8b0aaa678a4d91be5739f4f08d'
 SECURITY_CONTROLS_SHA256 = 'db25a32e81d4922ee17dbf41a63d383694d23f1d238066f1073fe68e9e821abd'
 REGULATIONS_SHA256 = '0934ccbedc2b77bbab11f966a2f6744ee0c1a9bdc648cfe9f718dbd2330d5d69'
@@ -131,26 +131,21 @@ def check2():
             table.append(plain_source(line))
     expected_headers = [
         ['日期', '範圍', '核心費曼（20 分）', '快速比較（10 分）', '學習分鐘', '模考分鐘（另計）'],
-        ['日期', '區塊', '核心費曼（20 分）', '快速比較（10 分）', '', '併入／安排內容', '替換與減量（不另加時）', '學習分鐘', '模考分鐘（另計）'],
+        ['日期', '區塊', '核心費曼（20 分）', '快速比較（10 分）', '程式題型', '併入／安排內容', '替換與減量（不另加時）', '學習分鐘', '模考分鐘（另計）'],
         ['日期', '複習', '核心費曼（20 分）', '快速（10 分）', '程式題型', '併入／安排內容', '替換與減量（不另加時）', '學習分鐘', '模考分鐘（另計）'],
         ['日期', '科目', '階段', '內容'],
     ]
     assert headers == expected_headers, headers
     assert [len(table) for table in tables] == [41, 14, 41, 28]
-    displayed_headers = []
     for i, (header, rows) in enumerate(zip(headers, tables)):
         assert all(len(row) == len(header) for row in rows), i
-        display = header[:]
-        if i == 1:
-            display[4] = '程式題型'  # Display-only label for the source's blank header.
-        displayed_headers.append(display)
     assert pages['index.html'].table_headers == [
         (['完成'] if i < 3 else []) + header + ['日期狀態']
-        for i, header in enumerate(displayed_headers)]
+        for i, header in enumerate(headers)]
     schedules = [tables[0], tables[1] + tables[2], tables[3]]
-    labels = [[displayed_headers[0]] * 41,
-              [displayed_headers[1]] * 14 + [displayed_headers[2]] * 41,
-              [displayed_headers[3]] * 28]
+    labels = [[headers[0]] * 41,
+              [headers[1]] * 14 + [headers[2]] * 41,
+              [headers[3]] * 28]
     for subject, source_rows, row_labels, count in zip(
             ('security', 'ai', 'drill-summary'), schedules, labels, (41, 55, 28)):
         actual = [row for row in pages['index.html'].schedule_rows if row['attrs']['data-schedule'] == subject]
@@ -176,7 +171,7 @@ def check2():
             assert rendered['labels'] == header + ['日期狀態'], (subject, day, rendered['labels'])
         if subject != 'drill-summary':
             assert expected_dates == [(date(2026, 9, 21) + timedelta(days=i)).isoformat() for i in range(count)]
-    assert len(re.findall(r'data-kind="lesson"', index)) == 64
+    assert len(re.findall(r'data-kind="lesson"', index)) == 66
     # Explicit duration/rest acceptance guards complement the full cell comparison.
     for subject, dates, minutes in (
             ('security', ('10-17', '10-19', '10-21', '10-23', '10-25', '10-28', '10-29'), '75'),
@@ -193,12 +188,15 @@ def check2():
     assert '形狀鏈' not in current_ai and '第 49 題注意力專練' not in current_ai
     assert '正式卷程式錯題只選最多兩個弱點群' in next(row['cells'][2] for row in ai_rows if row['attrs']['data-date'] == '2026-11-06')
     assert '2026-10-05' in index
-    assert 'max="64"' in index and '每天每科 60 分鐘是學習時間' in index
+    assert 'id="schedule-progress" max="66"' in index and '一般學習日每科 60 分鐘是學習時間' in index
     assert normalize(plain_source(plan_source.splitlines()[14])[0]) in normalize(''.join(pages['index.html'].text))
-    for day in ('2026-10-28', '2026-10-29'):
+    for day, topic in (('2026-10-28', '混淆矩陣手算 P/R/F1 類 3 題'),
+                       ('2026-10-29', 'Grid 組合數類 3 題')):
         row = next(r for r in ai_rows if r['attrs']['data-date'] == day)
-        assert row['attrs']['data-kind'] == 'rest' and '不排' in row['cells'][2]
-        assert row['cells'][-3:-1] == ['0', '0']
+        assert row['attrs']['data-kind'] == 'lesson' and row['cells'][1] == '總複習'
+        assert row['cells'][2] == topic, day
+        assert row['cells'][-3:-1] == ['20', '0'], day
+    assert '不排（資安計時重做日' not in index
     assert '114-2 Q32' in next(r['cells'][2] for r in ai_rows if r['attrs']['data-date'] == '2026-10-06')
     assert '每週二、六晚上各 1 小時' not in index
     words = ['1 小時內', '72 小時', '36 小時', '30 萬', '1,000 萬', '27017', '27018', '42001', '17025', '27701:2025', '尚未驗證', '待確認']
@@ -223,7 +221,7 @@ def check2():
         for filename in re.findall(r'!\[\[([^\]]+)\]\]', source.read_text()):
             assert ('a', 'href', 'assets/' + filename) in page.refs
             assert ('img', 'src', 'assets/' + Path(filename).stem + '-web.jpg') in page.refs
-    print(f'2 PASS: security 41/41 + AI 55/55 days; drill summary 28/28; lessons 64; columns 6/9/9/4; mock durations 12/12; keywords 12/12; source fragments {checked}/{checked}')
+    print(f'2 PASS: security 41/41 + AI 55/55 days; drill summary 28/28; lessons 66; columns 6/9/9/4; mock durations 12/12; keywords 12/12; source fragments {checked}/{checked}')
 
 
 def check3():

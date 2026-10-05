@@ -3,6 +3,7 @@ from contextlib import redirect_stdout
 from io import StringIO
 from pathlib import Path
 import sys
+import re
 import unittest
 from unittest.mock import patch
 
@@ -15,7 +16,8 @@ class VerifyPlanTest(unittest.TestCase):
         original = verify.raw['index.html']
         self.assertIn(before, original)
         changed = original.replace(before, after, 1)
-        with patch.dict(verify.pages, {'index.html': verify.Page(changed)}):
+        with patch.dict(verify.raw, {'index.html': changed}), \
+                patch.dict(verify.pages, {'index.html': verify.Page(changed)}):
             with self.assertRaises(AssertionError):
                 check()
 
@@ -38,6 +40,26 @@ class VerifyPlanTest(unittest.TestCase):
 
     def test_mobile_label_cannot_be_blank(self):
         self.check_modified('data-label="程式題型"', 'data-label=""')
+
+    def test_v6_calculation_days_cannot_revert_to_rest_or_lose_content(self):
+        for day, topic in (('28', '混淆矩陣手算 P/R/F1 類 3 題'),
+                           ('29', 'Grid 組合數類 3 題')):
+            row = re.search(
+                rf'<tr data-date="2026-10-{day}" data-kind="lesson" data-schedule="ai">.*?</tr>',
+                verify.raw['index.html'], re.S)
+            self.assertIsNotNone(row)
+            before = row[0]
+            for old, new in (('data-kind="lesson"', 'data-kind="rest"'),
+                             (topic, '不排（資安計時重做日，AI 休息）'),
+                             ('<td data-label="學習分鐘">20</td>',
+                              '<td data-label="學習分鐘">0</td>')):
+                with self.subTest(day=day, mutation=old):
+                    self.assertIn(old, before)
+                    self.check_modified(before, before.replace(old, new, 1))
+
+    def test_lesson_progress_cannot_revert_to_64(self):
+        self.check_modified('id="schedule-progress" max="66"',
+                            'id="schedule-progress" max="64"')
 
     def test_completion_key_cannot_change(self):
         self.check_modified('data-completion-key="ipas:completed:ai:2026-10-06"',

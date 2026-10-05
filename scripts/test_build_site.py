@@ -6,17 +6,19 @@ from build_site import PLAN, Renderer, expand_plan_rows, inline, note
 
 
 class PlanTablesTest(unittest.TestCase):
-    def test_revised_blank_program_header_has_a_readable_display_label(self):
-        header = ['日期', '區塊', '核心費曼', '快速比較', '',
-                  '併入／安排內容', '替換與減量', '學習分鐘', '模考分鐘（另計）']
-        row = ['9/21', 'A 區 CNN', 'Conv2D', 'CNN', '', '', '', '60', '0']
-        renderer = Renderer('plan', plan=True)
-        renderer.headings = [(3, 'ai', 'AI')]
-        renderer.table_index = 1
-        rendered = renderer.table([header, row])
-        self.assertIn('<th scope="col">程式題型</th>', rendered)
-        self.assertIn('<td data-label="程式題型"></td>', rendered)
-        self.assertEqual(header[4], '', 'The source header must remain unchanged')
+    def test_program_header_and_mobile_label_follow_source_without_fallback(self):
+        for label in ('程式題型', '題型', ''):
+            with self.subTest(label=label):
+                header = ['日期', '區塊', '核心費曼', '快速比較', label,
+                          '併入／安排內容', '替換與減量', '學習分鐘', '模考分鐘（另計）']
+                row = ['9/21', 'A 區 CNN', 'Conv2D', 'CNN', '', '', '', '60', '0']
+                renderer = Renderer('plan', plan=True)
+                renderer.headings = [(3, 'ai', 'AI')]
+                renderer.table_index = 1
+                rendered = renderer.table([header, row])
+                self.assertIn(f'<th scope="col">{label}</th>', rendered)
+                self.assertIn(f'<td data-label="{label}"></td>', rendered)
+                self.assertEqual(header[4], label, 'The source header must remain unchanged')
 
     def test_revised_daily_cells_and_subject_date_keys_are_preserved(self):
         security_header = ['日期', '範圍', '核心費曼', '快速比較', '學習分鐘', '模考分鐘（另計）']

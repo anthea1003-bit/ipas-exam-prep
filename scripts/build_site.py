@@ -170,9 +170,6 @@ class Renderer:
         if learning:
             rows = expand_plan_rows(rows)
         headers = list(rows[0])
-        if learning and len(headers) == 9 and not headers[4]:
-            # The revised historical AI table leaves this source header blank.
-            headers[4] = '程式題型'
         cls = 'lesson-table' if learning else 'data-table'
         out = [f'<div class="table-scroll" role="region" tabindex="0" aria-label="{e(self.headings[-1][2])}">',
                f'<table class="{cls}">', '<thead><tr>']
