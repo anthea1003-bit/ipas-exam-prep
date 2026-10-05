@@ -21,7 +21,7 @@ e = html.escape
 
 
 def expand_plan_rows(rows):
-    """Expand date spans, evenly distributing verbatim semicolon-delimited concepts."""
+    """Expand v4 spans verbatim; retain the historical four-column allocation."""
     expanded = [rows[0]]
     for row in rows[1:]:
         endpoints = row[0].split('–')
@@ -29,6 +29,11 @@ def expand_plan_rows(rows):
         days = (dates[-1] - dates[0]).days + 1
         if days == 1:
             expanded.append(row)
+            continue
+        if len(rows[0]) == 5:
+            for offset in range(days):
+                day = dates[0] + timedelta(days=offset)
+                expanded.append([f'{day.month}/{day.day}', *row[1:]])
             continue
         allocated = [['', ''] for _ in range(days)]
         if row[1] == '總複習':
@@ -160,8 +165,8 @@ class Renderer:
 
     def table(self, rows):
         self.table_index += 1
-        learning = self.plan and self.table_index <= 2
-        drill = self.plan and self.table_index > 2
+        drill = self.plan and rows[0] == ['日期', '科目', '階段', '內容']
+        learning = self.plan and not drill
         if learning:
             rows = expand_plan_rows(rows)
         cls = 'lesson-table' if learning else 'data-table'
@@ -242,7 +247,7 @@ def shell(title, page, hero, content, toc):
 <div class="reading-layout"><aside class="page-toc"><nav aria-label="頁內目錄"><p class="toc-label">本頁目錄</p>{toc}</nav></aside>
 <div class="reading-content">{content}</div></div>
 </main>
-<footer><p>來源：Obsidian 學習筆記；最後更新 {'2026-09-20' if page == 'plan' else '2026-09-15'}</p><a href="#main">回到頁首 ↑</a></footer>
+<footer><p>來源：Obsidian 學習筆記；最後更新 {'2026-10-05' if page == 'plan' else '2026-09-15'}</p><a href="#main">回到頁首 ↑</a></footer>
 </body>
 </html>
 '''

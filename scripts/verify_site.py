@@ -10,7 +10,10 @@ import sys
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN_SHA256 = '16a71b8e23191d4f4a320ef942fe80fde0045ed93df0751288d0356a293b7b04'
+PLAN_SHA256 = '2e81b59890230309fc481c71af4ac8c089a0f86fa878e7a1a4f0b9e22f500697'
+SECURITY_SOURCE_SHA256 = '102b18bbc749674db418d4c03521f0d45d4198054e87adfbb10628d213f2ad13'
+SECURITY_CONTROLS_SHA256 = '2c2b6abc3b1fb171607beee5fdfe54a591df02d4db216d3ac7afc0485efc58e4'
+REGULATIONS_SHA256 = '0934ccbedc2b77bbab11f966a2f6744ee0c1a9bdc648cfe9f718dbd2330d5d69'
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'}
 
 
@@ -112,8 +115,11 @@ def check2():
             tables.append(table)
         elif re.match(r'\| \d', line):
             table.append([cell.strip().replace('**', '') for cell in line.strip('|').split('|')])
-    assert len(tables) == 3 and len(tables[0]) == 41 and len(tables[2]) == 28
-    for subject, source_rows, count in zip(('security', 'ai', 'drill-summary'), tables, (41, 55, 28)):
+    assert len(tables) == 4 and len(tables[0]) == 41 and len(tables[3]) == 28
+    assert len(tables[1]) == 5 and all(len(row) == 4 for row in tables[1])
+    assert len(tables[2]) == 38 and all(len(row) == 5 for row in tables[2])
+    schedules = [tables[0], tables[1] + tables[2], tables[3]]
+    for subject, source_rows, count in zip(('security', 'ai', 'drill-summary'), schedules, (41, 55, 28)):
         actual = [row for row in pages['index.html'].schedule_rows if row['attrs']['data-schedule'] == subject]
         expected = []
         for row in source_rows:
@@ -123,7 +129,7 @@ def check2():
                 day = ends[0] + timedelta(days=offset)
                 cells = row[:]
                 cells[0] = f'{day.month}/{day.day}'
-                if days > 1:
+                if days > 1 and len(row) == 4:
                     if row[1] == '總複習':
                         topic = ('參數量', '混淆矩陣', 'Grid', '形狀鏈')[offset]
                         cells[2:] = [f'還沒過清零；四大計算題（{topic}）做 3 題', '']
@@ -151,6 +157,12 @@ def check2():
         if subject != 'drill-summary':
             assert [row[0] for row in expected] == [(date(2026, 9, 21) + timedelta(days=i)).isoformat() for i in range(count)]
     assert len(re.findall(r'data-kind="lesson"', index)) == 66
+    ai_rows = [row for row in pages['index.html'].schedule_rows if row['attrs']['data-schedule'] == 'ai']
+    current_ai = '\n'.join(' '.join(row['cells']) for row in ai_rows if row['attrs']['data-date'] >= '2026-10-05')
+    assert 'AutoML' in current_ai and '114-2 Q42–44' in current_ai
+    assert '形狀鏈' not in current_ai and '第 49 題注意力專練' not in current_ai
+    assert '正式卷程式題重做' in next(row['cells'][2] for row in ai_rows if row['attrs']['data-date'] == '2026-11-06')
+    assert '2026-10-05' in index
     assert 'max="66"' in index and '每天 2 小時' in index and '2026-09-20 改版' in index
     assert '每週二、六晚上各 1 小時' not in index
     words = ['1 小時內', '72 小時', '36 小時', '30 萬', '1,000 萬', '27017', '27018', '42001', '17025', '27701:2025', '尚未驗證', '待確認']
@@ -196,6 +208,18 @@ def check3():
 
 
 def check4():
+    security_rows = re.findall(r'<tr data-date="[^"]+" data-kind="[^"]+" data-schedule="security">.*?</tr>',
+                               raw['index.html'], re.S)
+    assert len(security_rows) == 41
+    # The old site predates canonical security updates. Pin the unchanged
+    # canonical backup's security section; check2 compares every rendered cell.
+    plan_source = (ROOT / 'source/讀書計畫-資安AI-2026.md').read_text()
+    security_source = plan_source.split('### 🔐 資安初級', 1)[1].split('### 🤖 AI 中級科三', 1)[0]
+    assert hashlib.sha256(security_source.encode()).hexdigest() == SECURITY_SOURCE_SHA256
+    # Scheduling attributes and completion controls also retain the old site keys.
+    security_controls = re.sub(r'<td\b[^>]*>.*?</td>', '', '\n'.join(security_rows), flags=re.S)
+    assert hashlib.sha256(security_controls.encode()).hexdigest() == SECURITY_CONTROLS_SHA256
+    assert hashlib.sha256((ROOT / 'regulations.html').read_bytes()).hexdigest() == REGULATIONS_SHA256
     baseline = json.loads((ROOT / 'evidence/originals.json').read_text())
     for name, expected in baseline.items():
         p = ROOT / name
@@ -213,10 +237,11 @@ def check4():
         size = path.stat().st_size
         assert size < 500000
         sizes.append(str(size))
-    print(f'4 PASS: 3 JPEGs width=1600; bytes={"/".join(sizes)} (<500000); original PNGs 3/3 + reference sources 3/3 unchanged; revised plan SHA256 pinned')
+    print(f'4 PASS: 3 JPEGs width=1600; bytes={"/".join(sizes)} (<500000); original PNGs 3/3 + reference sources 3/3 unchanged; revised plan SHA256 pinned; canonical security content + site controls 41/41 + regulations.html unchanged')
 
 
 def check5():
+    assert not re.search(r'/Users/|file://|/private/(?:tmp|var)/', raw['index.html'])
     for page in pages.values():
         for tag, attr, ref in page.refs:
             if attr == 'src' or tag == 'link':
