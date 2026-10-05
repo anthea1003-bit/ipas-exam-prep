@@ -10,9 +10,9 @@ import sys
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-PLAN_SHA256 = '2e81b59890230309fc481c71af4ac8c089a0f86fa878e7a1a4f0b9e22f500697'
-SECURITY_SOURCE_SHA256 = '102b18bbc749674db418d4c03521f0d45d4198054e87adfbb10628d213f2ad13'
-SECURITY_CONTROLS_SHA256 = '2c2b6abc3b1fb171607beee5fdfe54a591df02d4db216d3ac7afc0485efc58e4'
+PLAN_SHA256 = '36c898237cce592ce63e4e6d8104076324b745a0be44f7845602abaefa5b697e'
+SECURITY_SOURCE_SHA256 = 'ca9117691269ecc5400c07e70d3e49dffa3b2d8b0aaa678a4d91be5739f4f08d'
+SECURITY_CONTROLS_SHA256 = 'db25a32e81d4922ee17dbf41a63d383694d23f1d238066f1073fe68e9e821abd'
 REGULATIONS_SHA256 = '0934ccbedc2b77bbab11f966a2f6744ee0c1a9bdc648cfe9f718dbd2330d5d69'
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'}
 
@@ -24,12 +24,17 @@ class Page(HTMLParser):
         self.sections, self.scopes = {}, []
         self.schedule_rows, self.cell = [], None
         self.checkboxes = []
+        self.table_headers, self.header_cell = [], None
         self.feed(text)
         self.close()
         assert not self.errors and not self.stack, (self.errors, self.stack)
 
     def handle_starttag(self, tag, pairs):
         attrs = dict(pairs)
+        if tag == 'table':
+            self.table_headers.append([])
+        if tag == 'th' and attrs.get('scope') == 'col':
+            self.header_cell = []
         if tag == 'input' and attrs.get('type') == 'checkbox':
             self.checkboxes.append(attrs)
             assert self.stack[-1] == 'th' and self.schedule_rows[-1]['cells'] == []
@@ -38,6 +43,7 @@ class Page(HTMLParser):
             self.schedule_rows.append({'attrs': attrs, 'cells': []})
         if tag == 'td' and self.schedule_rows:
             self.cell = []
+            self.schedule_rows[-1].setdefault('labels', []).append(attrs.get('data-label'))
         if tag not in VOID:
             self.stack.append(tag)
         section = attrs.get('id')
@@ -51,6 +57,9 @@ class Page(HTMLParser):
         self.refs += [(tag, key, attrs[key]) for key in ('src', 'href') if key in attrs]
 
     def handle_endtag(self, tag):
+        if tag == 'th' and self.header_cell is not None:
+            self.table_headers[-1].append(''.join(self.header_cell))
+            self.header_cell = None
         if tag == 'td' and self.cell is not None:
             self.schedule_rows[-1]['cells'].append(''.join(self.cell))
             self.cell = None
@@ -62,6 +71,8 @@ class Page(HTMLParser):
             self.stack.pop()
 
     def handle_data(self, text):
+        if self.header_cell is not None:
+            self.header_cell.append(text)
         if self.cell is not None:
             self.cell.append(text)
         self.text.append(text)
@@ -108,62 +119,87 @@ def check1():
 
 def check2():
     index, regulations = raw.values()
-    tables, table = [], None
-    for line in (ROOT / 'source/讀書計畫-資安AI-2026.md').read_text().splitlines():
+    tables, headers, table = [], [], None
+    plan_source = (ROOT / 'source/讀書計畫-資安AI-2026.md').read_text()
+    for line in plan_source.splitlines():
         if line.startswith('| 日期 |'):
+            headers.append([cell.strip() for cell in line.strip('|').split('|')])
             table = []
             tables.append(table)
         elif re.match(r'\| \d', line):
-            table.append([cell.strip().replace('**', '') for cell in line.strip('|').split('|')])
-    assert len(tables) == 4 and len(tables[0]) == 41 and len(tables[3]) == 28
-    assert len(tables[1]) == 5 and all(len(row) == 4 for row in tables[1])
-    assert len(tables[2]) == 38 and all(len(row) == 5 for row in tables[2])
+            assert table is not None
+            table.append(plain_source(line))
+    expected_headers = [
+        ['日期', '範圍', '核心費曼（20 分）', '快速比較（10 分）', '學習分鐘', '模考分鐘（另計）'],
+        ['日期', '區塊', '核心費曼（20 分）', '快速比較（10 分）', '', '併入／安排內容', '替換與減量（不另加時）', '學習分鐘', '模考分鐘（另計）'],
+        ['日期', '複習', '核心費曼（20 分）', '快速（10 分）', '程式題型', '併入／安排內容', '替換與減量（不另加時）', '學習分鐘', '模考分鐘（另計）'],
+        ['日期', '科目', '階段', '內容'],
+    ]
+    assert headers == expected_headers, headers
+    assert [len(table) for table in tables] == [41, 14, 41, 28]
+    displayed_headers = []
+    for i, (header, rows) in enumerate(zip(headers, tables)):
+        assert all(len(row) == len(header) for row in rows), i
+        display = header[:]
+        if i == 1:
+            display[4] = '程式題型'  # Display-only label for the source's blank header.
+        displayed_headers.append(display)
+    assert pages['index.html'].table_headers == [
+        (['完成'] if i < 3 else []) + header + ['日期狀態']
+        for i, header in enumerate(displayed_headers)]
     schedules = [tables[0], tables[1] + tables[2], tables[3]]
-    for subject, source_rows, count in zip(('security', 'ai', 'drill-summary'), schedules, (41, 55, 28)):
+    labels = [[displayed_headers[0]] * 41,
+              [displayed_headers[1]] * 14 + [displayed_headers[2]] * 41,
+              [displayed_headers[3]] * 28]
+    for subject, source_rows, row_labels, count in zip(
+            ('security', 'ai', 'drill-summary'), schedules, labels, (41, 55, 28)):
         actual = [row for row in pages['index.html'].schedule_rows if row['attrs']['data-schedule'] == subject]
-        expected = []
-        for row in source_rows:
-            ends = [date(2026, *map(int, day.split('/'))) for day in row[0].split('–')]
-            days = (ends[-1] - ends[0]).days + 1
-            for offset in range(days):
-                day = ends[0] + timedelta(days=offset)
-                cells = row[:]
-                cells[0] = f'{day.month}/{day.day}'
-                if days > 1 and len(row) == 4:
-                    if row[1] == '總複習':
-                        topic = ('參數量', '混淆矩陣', 'Grid', '形狀鏈')[offset]
-                        cells[2:] = [f'還沒過清零；四大計算題（{topic}）做 3 題', '']
-                    else:
-                        full, quick = row[2].split('；'), row[3].split('；') if row[3] else []
-                        cells[2:] = ['；'.join(full[offset::days]),
-                                     '；'.join(term for i, term in enumerate(quick) if (i + len(full)) % days == offset)]
-                kind = 'drill'
-                if subject != 'drill-summary':
-                    cutoff = date(2026, 10, 17) if subject == 'security' else date(2026, 10, 31)
-                    if day < cutoff:
-                        kind = 'lesson'
-                    if '休息' in cells[1]:
-                        kind = 'rest'
-                    elif '考試' in cells[1]:
-                        kind = 'exam'
-                elif '休息' in cells[2]:
+        assert len(actual) == len(source_rows) == count, (subject, len(actual))
+        expected_dates = []
+        for rendered, cells, header in zip(actual, source_rows, row_labels):
+            day = date(2026, *map(int, cells[0].split('/')))
+            expected_dates.append(day.isoformat())
+            kind = 'drill'
+            if subject != 'drill-summary':
+                cutoff = date(2026, 10, 17) if subject == 'security' else date(2026, 10, 31)
+                if day < cutoff:
+                    kind = 'lesson'
+                if '休息' in cells[1]:
                     kind = 'rest'
-                expected.append((day.isoformat(), kind, cells))
-        assert len(actual) == len(expected) == count, (subject, len(actual), len(expected))
-        for rendered, (day, kind, cells) in zip(actual, expected):
-            assert rendered['attrs']['data-date'] == day, (subject, day)
+                elif '考試' in cells[1]:
+                    kind = 'exam'
+            elif '休息' in cells[2]:
+                kind = 'rest'
+            assert rendered['attrs']['data-date'] == day.isoformat(), (subject, day)
             assert rendered['attrs']['data-kind'] == kind, (subject, day, kind)
             assert rendered['cells'] == cells + ['已排定'], (subject, day, rendered['cells'], cells)
+            assert rendered['labels'] == header + ['日期狀態'], (subject, day, rendered['labels'])
         if subject != 'drill-summary':
-            assert [row[0] for row in expected] == [(date(2026, 9, 21) + timedelta(days=i)).isoformat() for i in range(count)]
-    assert len(re.findall(r'data-kind="lesson"', index)) == 66
+            assert expected_dates == [(date(2026, 9, 21) + timedelta(days=i)).isoformat() for i in range(count)]
+    assert len(re.findall(r'data-kind="lesson"', index)) == 64
+    # Explicit duration/rest acceptance guards complement the full cell comparison.
+    for subject, dates, minutes in (
+            ('security', ('10-17', '10-19', '10-21', '10-23', '10-25', '10-28', '10-29'), '75'),
+            ('ai', ('11-01', '11-03', '11-07', '11-10', '11-12'), '90')):
+        for day in dates:
+            row = next(r for r in pages['index.html'].schedule_rows
+                       if r['attrs']['data-schedule'] == subject and r['attrs']['data-date'] == '2026-' + day)
+            assert row['cells'][-3:-1] == ['0', minutes], (subject, day)
+            assert ('計時另計' if subject == 'security' else '模考另計') in ''.join(row['cells']), (subject, day)
+            assert row['labels'][-2] == '模考分鐘（另計）', (subject, day)
     ai_rows = [row for row in pages['index.html'].schedule_rows if row['attrs']['data-schedule'] == 'ai']
     current_ai = '\n'.join(' '.join(row['cells']) for row in ai_rows if row['attrs']['data-date'] >= '2026-10-05')
     assert 'AutoML' in current_ai and '114-2 Q42–44' in current_ai
     assert '形狀鏈' not in current_ai and '第 49 題注意力專練' not in current_ai
-    assert '正式卷程式題重做' in next(row['cells'][2] for row in ai_rows if row['attrs']['data-date'] == '2026-11-06')
+    assert '正式卷程式錯題只選最多兩個弱點群' in next(row['cells'][2] for row in ai_rows if row['attrs']['data-date'] == '2026-11-06')
     assert '2026-10-05' in index
-    assert 'max="66"' in index and '每天 2 小時' in index and '2026-09-20 改版' in index
+    assert 'max="64"' in index and '每天每科 60 分鐘是學習時間' in index
+    assert normalize(plain_source(plan_source.splitlines()[14])[0]) in normalize(''.join(pages['index.html'].text))
+    for day in ('2026-10-28', '2026-10-29'):
+        row = next(r for r in ai_rows if r['attrs']['data-date'] == day)
+        assert row['attrs']['data-kind'] == 'rest' and '不排' in row['cells'][2]
+        assert row['cells'][-3:-1] == ['0', '0']
+    assert '114-2 Q32' in next(r['cells'][2] for r in ai_rows if r['attrs']['data-date'] == '2026-10-06')
     assert '每週二、六晚上各 1 小時' not in index
     words = ['1 小時內', '72 小時', '36 小時', '30 萬', '1,000 萬', '27017', '27018', '42001', '17025', '27701:2025', '尚未驗證', '待確認']
     assert all(word in regulations for word in words)
@@ -176,7 +212,7 @@ def check2():
         cursor = 0
         for line_no, line in enumerate(source.read_text().splitlines(), 1):
             if section == 'plan' and line.startswith('|') and not line.startswith('| 日期 |'):
-                # All dated cells are compared above after independent span expansion.
+                # All dated cells and display labels are compared independently above.
                 continue
             for fragment in plain_source(line):
                 fragment = normalize(fragment)
@@ -187,7 +223,7 @@ def check2():
         for filename in re.findall(r'!\[\[([^\]]+)\]\]', source.read_text()):
             assert ('a', 'href', 'assets/' + filename) in page.refs
             assert ('img', 'src', 'assets/' + Path(filename).stem + '-web.jpg') in page.refs
-    print(f'2 PASS: security 41/41 + AI 55/55 days; drill summary 28/28; lessons 66; keywords 12/12; source fragments {checked}/{checked}')
+    print(f'2 PASS: security 41/41 + AI 55/55 days; drill summary 28/28; lessons 64; columns 6/9/9/4; mock durations 12/12; keywords 12/12; source fragments {checked}/{checked}')
 
 
 def check3():
@@ -211,13 +247,16 @@ def check4():
     security_rows = re.findall(r'<tr data-date="[^"]+" data-kind="[^"]+" data-schedule="security">.*?</tr>',
                                raw['index.html'], re.S)
     assert len(security_rows) == 41
-    # The old site predates canonical security updates. Pin the unchanged
-    # canonical backup's security section; check2 compares every rendered cell.
+    # Pin the approved revised security section, including its minute columns;
+    # check2 independently compares every rendered cell.
     plan_source = (ROOT / 'source/讀書計畫-資安AI-2026.md').read_text()
     security_source = plan_source.split('### 🔐 資安初級', 1)[1].split('### 🤖 AI 中級科三', 1)[0]
     assert hashlib.sha256(security_source.encode()).hexdigest() == SECURITY_SOURCE_SHA256
     # Scheduling attributes and completion controls also retain the old site keys.
     security_controls = re.sub(r'<td\b[^>]*>.*?</td>', '', '\n'.join(security_rows), flags=re.S)
+    # Ignore inter-tag whitespace left by removed data cells; adding minute
+    # columns must not change the pinned original control markup/attributes.
+    security_controls = re.sub(r'>\s+<', '><', security_controls)
     assert hashlib.sha256(security_controls.encode()).hexdigest() == SECURITY_CONTROLS_SHA256
     assert hashlib.sha256((ROOT / 'regulations.html').read_bytes()).hexdigest() == REGULATIONS_SHA256
     baseline = json.loads((ROOT / 'evidence/originals.json').read_text())
@@ -237,7 +276,7 @@ def check4():
         size = path.stat().st_size
         assert size < 500000
         sizes.append(str(size))
-    print(f'4 PASS: 3 JPEGs width=1600; bytes={"/".join(sizes)} (<500000); original PNGs 3/3 + reference sources 3/3 unchanged; revised plan SHA256 pinned; canonical security content + site controls 41/41 + regulations.html unchanged')
+    print(f'4 PASS: 3 JPEGs width=1600; bytes={"/".join(sizes)} (<500000); original PNGs 3/3 + reference sources 3/3 unchanged; revised plan SHA256 pinned; revised security content pinned + site controls 41/41 + regulations.html unchanged')
 
 
 def check5():
@@ -277,5 +316,6 @@ def check6():
 
 
 checks = [check1, check2, check3, check4, check5, check6]
-for check in ([checks[int(sys.argv[1])-1]] if len(sys.argv) > 1 else checks):
-    check()
+if __name__ == '__main__':
+    for check in ([checks[int(sys.argv[1])-1]] if len(sys.argv) > 1 else checks):
+        check()

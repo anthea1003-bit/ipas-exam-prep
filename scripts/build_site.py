@@ -21,7 +21,7 @@ e = html.escape
 
 
 def expand_plan_rows(rows):
-    """Expand v4 spans verbatim; retain the historical four-column allocation."""
+    """Preserve daily rows and v4 spans; retain historical four-column allocation."""
     expanded = [rows[0]]
     for row in rows[1:]:
         endpoints = row[0].split('–')
@@ -169,12 +169,16 @@ class Renderer:
         learning = self.plan and not drill
         if learning:
             rows = expand_plan_rows(rows)
+        headers = list(rows[0])
+        if learning and len(headers) == 9 and not headers[4]:
+            # The revised historical AI table leaves this source header blank.
+            headers[4] = '程式題型'
         cls = 'lesson-table' if learning else 'data-table'
         out = [f'<div class="table-scroll" role="region" tabindex="0" aria-label="{e(self.headings[-1][2])}">',
                f'<table class="{cls}">', '<thead><tr>']
         if learning:
             out.append('<th scope="col">完成</th>')
-        out.extend(f'<th scope="col">{inline(c)}</th>' for c in rows[0])
+        out.extend(f'<th scope="col">{inline(c)}</th>' for c in headers)
         if learning or drill:
             out.append('<th scope="col">日期狀態</th>')
         out.extend(['</tr></thead>', '<tbody>'])
@@ -200,7 +204,7 @@ class Renderer:
                 out.append('<th scope="row" class="completion-cell">'
                            f'<input type="checkbox" data-completion-key="{key}" aria-label="{label}" disabled></th>')
             for idx, cell in enumerate(row):
-                out.append(f'<td data-label="{e(rows[0][idx])}">{inline(cell)}</td>')
+                out.append(f'<td data-label="{e(headers[idx])}">{inline(cell)}</td>')
             if learning or drill:
                 out.append('<td class="date-status" data-label="日期狀態">已排定</td>')
             out.append('</tr>')
@@ -260,7 +264,7 @@ def toc_for(renderer, max_level=3):
 
 def build():
     content, plan = note(PLAN, 'plan')
-    hero = '''<p class="hero-intro">每天 2 小時：資安 1 小時＋AI 科目三 1 小時，使用 <code>/coach</code> 費曼學習法</p>
+    hero = '''<p class="hero-intro">一般雙科學習日每天 2 小時：資安 60 分鐘＋AI 科目三 60 分鐘；完整模考另計，模考日該科不另排學習，考前減量及休息依逐日表。使用 <code>/coach</code> 費曼學習法</p>
 <div class="countdown-grid">
 <section class="countdown security"><p class="card-label">🔐 資安初級</p><p class="countdown-value"><strong data-countdown="2026-10-31">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 10 / 31・週六</p></section>
 <section class="countdown ai"><p class="card-label">🤖 AI 中級科三</p><p class="countdown-value"><strong data-countdown="2026-11-14">—</strong><span data-countdown-label>天後考試</span></p><p class="exam-date">2026 / 11 / 14・週六</p></section>
